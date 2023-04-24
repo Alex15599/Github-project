@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 
 /**
- * @author longzhonghua
+ * @author \
  * @data 2/24/2019 9:51 AM
  */
 @RestController
