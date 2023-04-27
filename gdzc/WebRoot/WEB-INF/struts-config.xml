@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+
+	<form-beans>
+		<form-bean name="loginForm" type="com.niuys.gdzc.web.struts.form.LoginForm" />
+		<form-bean name="zcForm" type="com.niuys.gdzc.web.struts.form.ZCForm" />
+		<form-bean name="selectZCForm" type="com.niuys.gdzc.web.struts.form.SelectZCForm" />
+
+		<form-bean name="addPerAssetForm"
+			type="com.niuys.gdzc.web.struts.form.AddPerAssetForm" />
+
+		<form-bean name="findPerAssetForm"
+			type="com.niuys.gdzc.web.struts.form.FindPerAssetForm" />
+
+		<form-bean name="employeeInfoForm"
+			type="com.niuys.gdzc.web.struts.form.EmployeeInfoForm" />
+
+		<form-bean name="editEmployeeForm"
+			type="com.niuys.gdzc.web.struts.form.EditEmployeeForm" />
+		<!-- 系统用户管理 -->
+
+		<form-bean name="addUserForm" type="com.niuys.gdzc.web.struts.form.AddUserForm" />
+
+		<form-bean name="updatepwdForm" type="com.niuys.gdzc.web.struts.form.UpdatepwdForm" />
+	</form-beans>
+
+	<global-forwards>
+		<forward name="faillogin" path="/index.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<!-- 登录-->
+		<action path="/login" scope="request" name="loginForm"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/mainframe/framework.jsp" />
+			<forward name="fail" path="/index.jsp" />
+		</action>
+
+		<!-- 资产管理 -->
+		<action path="/zcgl" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcinfo/zcinfo_list.jsp" />
+		</action>
+
+		<action path="/add" scope="request" name="zcForm"
+			input="/zcinfo/zcinfo_add.jsp" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcgl.do" />
+			<forward name="fail" path="/zcinfo/zcinfo_add.jsp" />
+		</action>
+
+		<action path="/updateAssets" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcinfo/zcinfo_edit.jsp" />
+		</action>
+
+		<action path="/save" scope="request" name="zcForm"
+			input="/zcinfo/zcinfo_edit.jsp" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcgl.do" />
+			<forward name="fail" path="/zcinfo/zcinfo_edit.jsp" />
+		</action>
+
+		<action path="/deleteAssets" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcgl.do" />
+			<forward name="fail" path="/zcinfo/fail.jsp" />
+		</action>
+
+		<!-- 资产查询 -->
+		<action path="/checkzc" name="selectZCForm"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_check/checkzc.jsp" />
+		</action>
+
+		<!-- 维护 管理-->
+		<action path="/assetPerAction" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_wx/zc_wx.jsp" />
+		</action>
+
+		<action path="/addPerAssetAction" scope="request" name="addPerAssetForm"
+			input="/assetPerAction.do" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/assetPerAction.do" />
+			<forward name="fail" path="/zc_wx/zc_wx.jsp" />
+		</action>
+
+		<action path="/deletePerAssetAction" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/assetPerAction.do" />
+		</action>
+
+		<action path="/findPerAssetAction" scope="request" name="findPerAssetForm"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_wx/newZcwx_check.jsp" />
+		</action>
+
+		<action path="/updatePerAssetAction" scope="request" name="findPerAssetForm"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/assetPerAction.do" />
+		</action>
+
+		<!-- 维护查询 -->
+		<action path="/findPerAssetbyPro" name="findPerAssetForm"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_wx/checkZcwxInfo.jsp" />
+		</action>
+
+		<!-- 借还管理 -->
+		<action path="/lendInfos"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_inout/zc_in_out.jsp" />
+		</action>
+
+		<action path="/checkInOut"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_inout/inout_check.jsp" />
+		</action>
+
+		<action path="/backZC"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/lendInfos.do" />
+			<forward name="fail" path="/zc_inout/fail.jsp" />
+		</action>
+
+		<action path="/lendZC"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/saveLend.do" />
+			<forward name="fail" path="/zc_inout/zc_in_out.jsp" />
+		</action>
+
+		<action path="/saveLend" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/lendInfos.do" />
+		</action>
+
+		<action path="/zcInOut" scope="request"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zc_inout/zcInOutCheck.jsp" />
+		</action>
+
+		<!-- 员工信息  -->
+		<action path="/employeeAction"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employee/employee_list.jsp" />
+		</action>
+
+		<action path="/addEmployeeAction"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employee/employee_add.jsp" />
+			<forward name="fail" path="/employee/employee_list.jsp" />
+		</action>
+
+		<action path="/addEmployeeInfo" name="employeeInfoForm"
+			input="/employee/employee_add.jsp" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employeeAction.do" />
+			<forward name="fail" path="/employee/employee_add.jsp" />
+		</action>
+
+		<action path="/deleteEmployeeAction"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employeeAction.do" />
+			<forward name="fail" path="/zcinfo/fail.jsp" />
+		</action>
+
+		<action path="/editEmployeeAction" 
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employee/employee_edit.jsp" />
+		</action>
+
+		<action path="/updateEmployeeAction" name="editEmployeeForm"
+			input="/employee/employee_edit.jsp" type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/employeeAction.do" />
+			<forward name="fail" path="/employee/employee_edit.jsp" />
+		</action>
+
+		<!-- 系统用户管理  -->
+		<action path="/userManaAction"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user_info/user_list.jsp" />
+		</action>
+
+		<action path="/deleteUserAction"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/userManaAction.do" />
+		</action>
+
+		<action path="/addUserAction" name="addUserForm" input="/user_info/user_add.jsp"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/userManaAction.do" />
+			<forward name="fail" path="/user_info/user_add.jsp" />
+		</action>
+
+		<action path="/findUserbyname"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/user_info/user_update.jsp" />
+		</action>
+
+		<action path="/updateUser"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/userManaAction.do" />
+		</action>
+
+		<action path="/updatepwd" name="updatepwdForm" input="/user_info/updatepwd.jsp"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/zcinfo/success.jsp" />
+			<forward name="fail" path="/user_info/updatepwd.jsp" />
+		</action>
+
+		<!-- 打印报表 -->
+		<action path="/printStoreIn"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/pages/storeIn/printStoreIn.jsp" />
+		</action>
+		<action path="/storeInShowAll"
+			type="org.springframework.web.struts.DelegatingActionProxy">
+			<forward name="success" path="/pages/storeIn/storeInShowAll.jsp" />
+		</action>
+
+	</action-mappings>
+
+	<message-resources parameter="MessageResources" null="false" />
+
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation"
+			value="/WEB-INF/applicationContext.xml,/WEB-INF/action-servlet.xml" />
+	</plug-in>
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>

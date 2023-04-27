@@ -1,0 +1,10 @@
+BODY { FONT-SIZE: 9pt }
+TH { FONT-SIZE: 9pt }
+TD { FONT-SIZE: 9pt }
+.tag-solid {  border: solid; border-width: 0px 0px 1px; border-color: #000000 black #000000 #000000; font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; color: #000000}
+.l1 { COLOR: Red;FONT-SIZE: 12px;FONT-WEIGHT: bolder;TEXT-DECORATION: line-through}
+.price { COLOR: red; FONT-SIZE: 12px;FONT-WEIGHT: bolder}
+A:link { COLOR:#000080; TEXT-DECORATION: none; TEXT-TRANSFORM: none }
+A:visited {COLOR:#000080; TEXT-DECORATION: none; TEXT-TRANSFORM: none }
+A:active { COLOR:#FF0000; TEXT-DECORATION: underline }
+A:hover { COLOR:#FF0000; TEXT-DECORATION: underline }

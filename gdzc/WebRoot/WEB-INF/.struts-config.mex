@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/login.do" location="50,50" dimension="358,84" />
+  <StrutsActivity path="/zcgl.do" location="350,250" dimension="358,84" />
+  <StrutsActivity path="/add.do" location="950,350" dimension="358,84" />
+  <StrutsActivity path="/updateAssets.do" location="50,650" dimension="358,84" />
+  <StrutsActivity path="/save.do" location="650,750" dimension="358,84" />
+  <StrutsActivity path="/deleteAssets.do" location="950,950" dimension="358,84" />
+  <StrutsActivity path="/checkzc.do" location="1550,250" dimension="358,84" />
+  <StrutsActivity path="/assetPerAction.do" location="1250,550" dimension="358,84" />
+  <StrutsActivity path="/addPerAssetAction.do" location="1250,750" dimension="358,84" />
+  <StrutsActivity path="/deletePerAssetAction.do" location="350,950" dimension="358,84" />
+  <StrutsActivity path="/findPerAssetAction.do" location="650,1150" dimension="358,84" />
+  <StrutsActivity path="/updatePerAssetAction.do" location="1250,1150" dimension="358,84" />
+  <StrutsActivity path="/findPerAssetbyPro.do" location="50,1250" dimension="358,84" />
+  <StrutsActivity path="/lendInfos.do" location="1550,950" dimension="358,84" />
+  <StrutsActivity path="/checkInOut.do" location="950,1350" dimension="358,84" />
+  <StrutsActivity path="/backZC.do" location="1550,1350" dimension="358,84" />
+  <StrutsActivity path="/lendZC.do" location="350,1550" dimension="358,84" />
+  <StrutsActivity path="/saveLend.do" location="1850,450" dimension="358,84" />
+  <StrutsActivity path="/zcInOut.do" location="1250,1750" dimension="358,84" />
+  <StrutsActivity path="/employeeAction.do" location="1850,650" dimension="358,84" />
+  <StrutsActivity path="/addEmployeeAction.do" location="1850,1150" dimension="358,84" />
+  <StrutsActivity path="/addEmployeeInfo.do" location="1250,1550" dimension="358,84" />
+  <StrutsActivity path="/deleteEmployeeAction.do" location="1850,1550" dimension="358,84" />
+  <StrutsActivity path="/editEmployeeAction.do" location="50,1750" dimension="358,84" />
+  <StrutsActivity path="/updateEmployeeAction.do" location="650,1750" dimension="358,84" />
+  <StrutsActivity path="/userManaAction.do" location="2150,850" dimension="358,84" />
+  <StrutsActivity path="/deleteUserAction.do" location="2150,1350" dimension="358,84" />
+  <StrutsActivity path="/addUserAction.do" location="1850,1750" dimension="358,84" />
+  <StrutsActivity path="/findUserbyname.do" location="350,1950" dimension="358,84" />
+  <StrutsActivity path="/updateUser.do" location="950,1950" dimension="358,84" />
+  <StrutsActivity path="/updatepwd.do" location="2150,1950" dimension="358,84" />
+  <StrutsActivity path="/printStoreIn.do" location="1850,2150" dimension="358,84" />
+  <StrutsActivity path="/storeInShowAll.do" location="50,2350" dimension="358,84" />
+  <StrutsActivity path="faillogin;6" location="1550,2050" dimension="106,72" />
+  <StrutsActivity path="/index.jsp" location="650,150" dimension="100,48" />
+  <StrutsActivity path="/mainframe/framework.jsp" location="950,150" dimension="184,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_list.jsp" location="950,250" dimension="178,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_add.jsp" location="650,450" dimension="172,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_edit.jsp" location="950,650" dimension="178,48" />
+  <StrutsActivity path="/zcinfo/fail.jsp" location="1250,250" dimension="136,48" />
+  <StrutsActivity path="/zc_check/checkzc.jsp" location="1550,450" dimension="166,48" />
+  <StrutsActivity path="/zc_wx/zc_wx.jsp" location="350,1150" dimension="136,48" />
+  <StrutsActivity path="/zc_wx/newZcwx_check.jsp" location="350,1450" dimension="184,48" />
+  <StrutsActivity path="/zc_wx/checkZcwxInfo.jsp" location="650,1450" dimension="184,48" />
+  <StrutsActivity path="/zc_inout/zc_in_out.jsp" location="50,1050" dimension="178,48" />
+  <StrutsActivity path="/zc_inout/inout_check.jsp" location="50,1150" dimension="190,48" />
+  <StrutsActivity path="/zc_inout/fail.jsp" location="50,1550" dimension="148,48" />
+  <StrutsActivity path="/zc_inout/zcInOutCheck.jsp" location="1850,850" dimension="196,48" />
+  <StrutsActivity path="/employee/employee_list.jsp" location="1550,1950" dimension="202,48" />
+  <StrutsActivity path="/employee/employee_add.jsp" location="1850,1950" dimension="196,48" />
+  <StrutsActivity path="/employee/employee_edit.jsp" location="50,2050" dimension="202,48" />
+  <StrutsActivity path="/user_info/user_list.jsp" location="350,2250" dimension="184,48" />
+  <StrutsActivity path="/user_info/user_add.jsp" location="650,2250" dimension="178,48" />
+  <StrutsActivity path="/user_info/user_update.jsp" location="950,2250" dimension="196,48" />
+  <StrutsActivity path="/user_info/updatepwd.jsp" location="1250,2250" dimension="184,48" />
+  <StrutsActivity path="/zcinfo/success.jsp" location="50,950" dimension="154,48" />
+  <StrutsActivity path="/pages/storeIn/printStoreIn.jsp" location="50,2650" dimension="226,48" />
+  <StrutsActivity path="/pages/storeIn/storeInShowAll.jsp" location="350,2650" dimension="238,48" />
+  <StrutsActivity path="/zcinfo/addAssets_fail1.jsp" location="650,550" dimension="202,48" />
+  <StrutsActivity path="/zcinfo/addAssets_fail2.jsp" location="950,550" dimension="202,48" />
+  <StrutsActivity path="" location="50,350" dimension="40,48" />
+  <StrutsActivity path="/zc_inout/" location="50,1450" dimension="100,48" />
+  <StrutsActivity path="/zcinfo/addAssets_success.jsp" location="350,450" dimension="214,48" />
+  <StrutsActivity path="/zcinfo/addAssets_fail.jsp" location="350,550" dimension="196,48" />
+  <StrutsActivity path="zcinfo_save.jsp" location="50,550" dimension="130,48" />
+  <StrutsActivity path="/login.jsp" location="950,50" dimension="100,48" />
+  <StrutsActivity path="/success.jsp" location="650,50" dimension="112,48" />
+  <StrutsActivity path="/checkjsp.jsp" location="50,250" dimension="118,48" />
+  <StrutsActivity path="/addAssets_success.jsp" location="50,450" dimension="172,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_edit.jsp " location="650,650" dimension="184,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_saveedit.jsp" location="50,850" dimension="202,48" />
+  <StrutsActivity path="/zcinfo/addAssets_fail3.jsp" location="350,850" dimension="202,48" />
+  <StrutsActivity path="/zc_inout/zc_back_ok.jsp" location="650,1350" dimension="184,48" />
+  <StrutsActivity path="/zc_inout/success.jsp" location="950,1550" dimension="166,48" />
+  <StrutsActivity path="/zcinfo/zcinfo_list.jsp.jsp" location="50,1650" dimension="202,48" />
+  <StrutsActivity path="/zcinfo_edit.jsp" location="2150,1050" dimension="136,48" />
+  <StrutsActivity path="/zcinfo/checkzc.jsp" location="950,1650" dimension="154,48" />
+  <StrutsActivity path="/assetPerAction" location="50,1950" dimension="130,48" />
+  <StrutsTransition id="/editEmployeeAction.do,success,/employee/employee_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/employee/employee_add.jsp,null,/addEmployeeInfo.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/findPerAssetbyPro.do,success,/zc_wx/checkZcwxInfo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="408,1265" />
+      <AbsolutePoint location="579,1265" />
+      <AbsolutePoint location="579,1474" />
+      <AbsolutePoint location="650,1474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zcinfo/zcinfo_add.jsp,null,/add.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="822,465" />
+      <AbsolutePoint location="1069,465" />
+      <AbsolutePoint location="1069,434" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/checkInOut.do,success,/zc_inout/inout_check.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,1413" />
+      <AbsolutePoint location="-25,1413" />
+      <AbsolutePoint location="-25,1174" />
+      <AbsolutePoint location="50,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deleteEmployeeAction.do,fail,/zcinfo/fail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2208,1592" />
+      <AbsolutePoint location="2313,1592" />
+      <AbsolutePoint location="2313,-100" />
+      <AbsolutePoint location="1318,-100" />
+      <AbsolutePoint location="1318,250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add.do,success,/zcgl.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1129,392" />
+      <AbsolutePoint location="529,292" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/findUserbyname.do,success,/user_info/user_update.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/checkzc.do,success,/zc_check/checkzc.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1701,334" />
+      <AbsolutePoint location="1701,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updatePerAssetAction.do,success,/assetPerAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1429,1192" />
+      <AbsolutePoint location="1429,592" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zcgl.do,success,/zcinfo/zcinfo_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="708,283" />
+      <AbsolutePoint location="950,283" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/save.do,fail,/zcinfo/zcinfo_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="965,750" />
+      <AbsolutePoint location="965,698" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/storeInShowAll.do,success,/pages/storeIn/storeInShowAll.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user_info/updatepwd.jsp,null,/updatepwd.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1434,2274" />
+      <AbsolutePoint location="2329,2274" />
+      <AbsolutePoint location="2329,2034" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addPerAssetAction.do,fail,/zc_wx/zc_wx.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1429,792" />
+      <AbsolutePoint location="418,1174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,fail,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="237,134" />
+      <AbsolutePoint location="237,174" />
+      <AbsolutePoint location="650,174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deleteAssets.do,fail,/zcinfo/fail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1197,950" />
+      <AbsolutePoint location="1197,465" />
+      <AbsolutePoint location="1323,465" />
+      <AbsolutePoint location="1323,298" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/assetPerAction.do,null,/addPerAssetAction.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1429,634" />
+      <AbsolutePoint location="1429,750" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updatepwd.do,fail,/user_info/updatepwd.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addUserAction.do,success,/userManaAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updateUser.do,success,/userManaAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addUserAction.do,fail,/user_info/user_add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addEmployeeAction.do,success,/employee/employee_add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="faillogin;6,null,/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1656,2086" />
+      <AbsolutePoint location="2673,2086" />
+      <AbsolutePoint location="2673,213" />
+      <AbsolutePoint location="693,213" />
+      <AbsolutePoint location="693,198" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zcinfo/zcinfo_edit.jsp,null,/save.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1039,674" />
+      <AbsolutePoint location="829,792" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/printStoreIn.do,success,/pages/storeIn/printStoreIn.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,success,/mainframe/framework.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="408,113" />
+      <AbsolutePoint location="1035,113" />
+      <AbsolutePoint location="1035,150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/lendZC.do,success,/saveLend.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="529,1634" />
+      <AbsolutePoint location="529,1879" />
+      <AbsolutePoint location="-160,1879" />
+      <AbsolutePoint location="-160,513" />
+      <AbsolutePoint location="1850,513" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/backZC.do,fail,/zc_inout/fail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1729,1434" />
+      <AbsolutePoint location="1729,1713" />
+      <AbsolutePoint location="297,1713" />
+      <AbsolutePoint location="297,1574" />
+      <AbsolutePoint location="198,1574" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/employeeAction.do,success,/employee/employee_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/zcInOut.do,success,/zc_inout/zcInOutCheck.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1429,1792" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/userManaAction.do,success,/user_info/user_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addEmployeeInfo.do,fail,/employee/employee_add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/save.do,success,/zcgl.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="829,792" />
+      <AbsolutePoint location="529,292" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/findPerAssetAction.do,success,/zc_wx/newZcwx_check.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,1183" />
+      <AbsolutePoint location="501,1183" />
+      <AbsolutePoint location="501,1450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updatepwd.do,success,/zcinfo/success.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="127,974" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/lendZC.do,fail,/zc_inout/zc_in_out.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="350,1613" />
+      <AbsolutePoint location="35,1613" />
+      <AbsolutePoint location="35,1074" />
+      <AbsolutePoint location="50,1074" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/assetPerAction.do,success,/zc_wx/zc_wx.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1608,592" />
+      <AbsolutePoint location="2583,592" />
+      <AbsolutePoint location="2583,1295" />
+      <AbsolutePoint location="423,1295" />
+      <AbsolutePoint location="423,1198" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updateEmployeeAction.do,success,/employeeAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/backZC.do,success,/lendInfos.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1729,1392" />
+      <AbsolutePoint location="1729,992" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/lendInfos.do,success,/zc_inout/zc_in_out.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1729,1034" />
+      <AbsolutePoint location="1729,1265" />
+      <AbsolutePoint location="609,1265" />
+      <AbsolutePoint location="609,1213" />
+      <AbsolutePoint location="297,1213" />
+      <AbsolutePoint location="297,1065" />
+      <AbsolutePoint location="228,1065" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deletePerAssetAction.do,success,/assetPerAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="579,950" />
+      <AbsolutePoint location="579,613" />
+      <AbsolutePoint location="1250,613" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deleteEmployeeAction.do,success,/employeeAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updateEmployeeAction.do,fail,/employee/employee_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/saveLend.do,success,/lendInfos.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1850,483" />
+      <AbsolutePoint location="1731,483" />
+      <AbsolutePoint location="1731,950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add.do,fail,/zcinfo/zcinfo_add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,383" />
+      <AbsolutePoint location="735,383" />
+      <AbsolutePoint location="735,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addEmployeeInfo.do,success,/employeeAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/updateAssets.do,success,/zcinfo/zcinfo_edit.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="229,692" />
+      <AbsolutePoint location="1039,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deleteUserAction.do,success,/userManaAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/employee/employee_edit.jsp,null,/updateEmployeeAction.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/deleteAssets.do,success,/zcgl.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1129,992" />
+      <AbsolutePoint location="529,292" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addPerAssetAction.do,success,/assetPerAction.do,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1399,750" />
+      <AbsolutePoint location="1399,634" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/user_info/user_add.jsp,null,/addUserAction.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="739,2274" />
+      <AbsolutePoint location="2029,1792" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/addEmployeeAction.do,fail,/employee/employee_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

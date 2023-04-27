@@ -1,105 +1,215 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>欢迎使用EQMS管理系统</title>
-    <style>
-      html, body {
-          margin: 0;
-          font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
-      }
-      .bg-image {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: url("img/980.jpg") fixed no-repeat ;
-        background-size: cover;
-      }
-      .MyForm {
-        display: flex;
-        flex-direction: column;
-        padding: 40px;
-        text-align: 0px auto;
-        position: relative;
-        z-index: 100;
-        background: inherit;
-        border-radius: 18px;
-        overflow: hidden;
-        float: right;
+<html lang="en">
 
-      }
-      .MyForm:before {
-        content: "";
-        width: calc(100% + 20px);
-        height: calc(100% + 20px);
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        overflow: hidden;
-        background: inherit;
-        box-shadow: inset 0 0 0 300px rgba(73, 76, 78, 0.25);
-        filter: blur(6px);
-        z-index: -1;
-      }
-      .MyForm h2 {
-        ont-size: 20px;
-        font-weight: 400;
-        color: #3d5245;
-        text-align: center;
-        font-size: 26px;
-      }
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>欢迎使用EQMS管理系统</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
 
-      .MyForm input {
-        height: 36px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 4px;
-        padding: 0 0px;
-        color: #3d5245;
-        font-size: 12px;
-        text-align: center;  
-        vertical-align:middle;
-        text-indent:10px
-        ;
-      }
-      .MyForm button {
-        height: 36px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 76px;
-        padding: 0 111px;
-        color: #3d5245;
-        font-size: 14px;
-        text-align: left
-        ;
-        vertical-align:middle;
-        text-indent:10px;
-      }
+		a {
+			text-decoration: none;
+		}
 
-    </style>
-  </head>
-  <body>
-    <div class="bg-image">
-      <div class="MyForm">
-        <script src="jsMod/checklogininfo.js" type="text/javascript"></script>
-            <form action="index.html" class="MyForm">
-              <h2>欢  迎  使  用</h2><br>
-              <input
-              type="text"
-              name="username"
-              placeholder="请输入用户名"
-              /><br>
-              <input
-              type="password"
-              name="password"
-              placeholder="请输入密码"
-              /><br>
-              <button type="submit">登陆</button>
-              <a href="index.html"></a>
-            </form>
-      </div>
-    </div>
-  </body>
+		input,
+		button {
+			background: transparent;
+			border: 0;
+			outline: none;
+		}
+
+		body {
+			height: 100vh;
+			background: url("img/loginpage.jpg");
+            background-size: cover;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 16px;
+			color: #03e9f4;
+		}
+
+		.loginBox {
+			width: 400px;
+			height: 364px;
+			background-color: #0c1622;
+			margin: 100px auto;
+			border-radius: 10px;
+			box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .6);
+			padding: 40px;
+			box-sizing: border-box;
+		}
+
+		h2 {
+			text-align: center;
+			color: aliceblue;
+			margin-bottom: 30px;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		.item {
+			height: 45px;
+			border-bottom: 1px solid #fff;
+			margin-bottom: 40px;
+			position: relative;
+		}
+
+		.item input {
+			width: 100%;
+			height: 100%;
+			color: #fff;
+			padding-top: 20px;
+			box-sizing: border-box;
+		}
+
+		.item input:focus+label,
+		.item input:valid+label {
+			top: 0px;
+			font-size: 2px;
+		}
+
+		.item label {
+			position: absolute;
+			left: 0;
+			top: 12px;
+			transition: all 0.5s linear;
+		}
+
+		.btn {
+			padding: 10px 20px;
+			margin-top: 30px;
+			color: #03e9f4;
+			position: relative;
+			overflow: hidden;
+			text-transform: uppercase;
+			letter-spacing: 4px;
+			left: 38%;
+		}
+
+		.btn:hover {
+			border-radius: 5px;
+			color: #fff;
+			background: #03e9f4;
+			box-shadow: 0 0 5px 0 #03e9f4,
+				0 0 25px 0 #03e9f4,
+				0 0 50px 0 #03e9f4,
+				0 0 100px 0 #03e9f4;
+			transition: all 1s linear;
+		}
+
+		/* .btn>span {
+			position: absolute;
+		} */
+
+		.btn>span:nth-child(1) {
+			width: 100%;
+			height: 2px;
+			background: -webkit-linear-gradient(left, transparent, #03e9f4);
+			left: -100%;
+			top: 0px;
+			animation: line1 1s linear infinite;
+		}
+
+		@keyframes line1 {
+
+			50%,
+			100% {
+				left: 100%;
+			}
+		}
+
+		.btn>span:nth-child(2) {
+			width: 2px;
+			height: 100%;
+			background: -webkit-linear-gradient(top, transparent, #03e9f4);
+			right: 0px;
+			top: -100%;
+			animation: line2 1s 0.25s linear infinite;
+		}
+
+		@keyframes line2 {
+
+			50%,
+			100% {
+				top: 100%;
+			}
+		}
+
+		.btn>span:nth-child(3) {
+			width: 100%;
+			height: 2px;
+			background: -webkit-linear-gradient(left, #03e9f4, transparent);
+			left: 100%;
+			bottom: 0px;
+			animation: line3 1s 0.75s linear infinite;
+		}
+
+		@keyframes line3 {
+
+			50%,
+			100% {
+				left: -100%;
+			}
+		}
+
+		.btn>span:nth-child(4) {
+			width: 2px;
+			height: 100%;
+			background: -webkit-linear-gradient(top, transparent, #03e9f4);
+			left: 0px;
+			top: 100%;
+			animation: line4 1s 1s linear infinite;
+		}
+
+		@keyframes line4 {
+
+			50%,
+			100% {
+				top: -100%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="loginBox">
+		<h2>欢  迎  使  用</h2>
+		<form action="{% url 'dologin' %}" method="post" enctype="multipart/form-data" {% csrf_token %}>
+			<div class="item">
+				<input type="text" id="name" required>
+				<label for="">工号</label>
+			</div>
+			<div class="item">
+				<input type="password" id="pwd" required>
+				<label for="">密码</label>
+			</div>
+			<button class="btn" id="btn" >登录
+            <a href="index.html">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</form>
+	</div>
+	<script>
+        btn=document.getElementById('btn');
+        names=document.getElementById('name');
+        pwd=document.getElementById('pwd');
+        $('#btn').on('click',function(){
+            $.ajax({
+                type:'POST',
+                url:'http://127.0.0.1:8080/server',
+                data:{name:names.value,passwd:pwd.value},
+                success:function(response){
+                    console.log(response)
+                }
+            })
+        })
+    </script>
+</body>
 </html>

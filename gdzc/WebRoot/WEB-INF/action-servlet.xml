@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<bean id="baseAction" class="com.niuys.gdzc.web.struts.action.BaseAction"
+		abstract="true">
+		<property name="assetManagerImpl">
+			<ref bean="assetManagerImpl" />
+		</property>
+		<property name="assetPerManagerImpl">
+			<ref bean="assetPerManagerImpl" />
+		</property>
+		<property name="inOutAssetManagerImpl">
+			<ref bean="inOutAssetManagerImpl" />
+		</property>
+		<property name="employeeManagerImpl">
+			<ref bean="employeeManagerImpl" />
+		</property>
+		<property name="userManaManagerImpl">
+			<ref bean="userManaManagerImpl" />
+		</property>
+	</bean>
+
+
+
+	<!-- 登录 -->
+	<bean name="/login" class="com.niuys.gdzc.web.struts.action.LoginAction"
+		parent="baseAction" />
+
+	<!-- 资产管理 -->
+	<bean name="/zcgl" class="com.niuys.gdzc.web.struts.action.ZCGLAction"
+		parent="baseAction" />
+
+	<bean name="/add" class="com.niuys.gdzc.web.struts.action.AddAssetsAction"
+		parent="baseAction" />
+
+	<bean name="/updateAssets" class="com.niuys.gdzc.web.struts.action.UpdateAssetsAction"
+		parent="baseAction" />
+
+	<bean name="/save" class="com.niuys.gdzc.web.struts.action.SaveUpdateAssetsAction"
+		parent="baseAction" />
+
+	<bean name="/deleteAssets" class="com.niuys.gdzc.web.struts.action.DeleteAssetsAction"
+		parent="baseAction" />
+
+	<!-- 资产维护 -->
+	<bean name="/assetPerAction" class="com.niuys.gdzc.web.struts.action.AssetPerAction"
+		parent="baseAction" />
+
+	<bean name="/addPerAssetAction" class="com.niuys.gdzc.web.struts.action.AddPerAssetAction"
+		parent="baseAction" />
+
+	<bean name="/deletePerAssetAction" class="com.niuys.gdzc.web.struts.action.DeletePerassetAction"
+		parent="baseAction" />
+
+	<!-- 资产查询 -->
+	<bean name="/checkzc" class="com.niuys.gdzc.web.struts.action.CheckZCAction"
+		parent="baseAction" />
+
+	<!--维护更新 -->
+	<bean name="/findPerAssetAction" class="com.niuys.gdzc.web.struts.action.FindPerAssetAction"
+		parent="baseAction" />
+
+	<bean name="/updatePerAssetAction" class="com.niuys.gdzc.web.struts.action.UpdatePerAssetAction"
+		parent="baseAction" />
+
+	<bean name="/findPerAssetbyPro" class="com.niuys.gdzc.web.struts.action.FindPerAssetbyPro"
+		parent="baseAction" />
+
+	<!-- 借还管理-->
+	<bean name="/lendInfos" class="com.niuys.gdzc.web.struts.action.JHGLAction"
+		parent="baseAction" />
+
+	<bean name="/checkInOut" class="com.niuys.gdzc.web.struts.action.CheckInOutAction"
+		parent="baseAction" />
+
+	<bean name="/backZC" class="com.niuys.gdzc.web.struts.action.BackZCAction"
+		parent="baseAction" />
+
+	<bean name="/lendZC" class="com.niuys.gdzc.web.struts.action.LendZCAction"
+		parent="baseAction" />
+
+	<bean name="/saveLend" class="com.niuys.gdzc.web.struts.action.SaveLendZCAction"
+		parent="baseAction" />
+
+	<!-- 借还查询-->
+	<bean name="/zcInOut" class="com.niuys.gdzc.web.struts.action.ZCInOutAction"
+		parent="baseAction" />
+
+	<!-- 员工信息 -->
+	<bean name="/employeeAction" class="com.niuys.gdzc.web.struts.action.EmployeeAction"
+		parent="baseAction" />
+
+	<bean name="/addEmployeeAction" class="com.niuys.gdzc.web.struts.action.AddEmployeeAction"
+		parent="baseAction" />
+
+	<bean name="/addEmployeeInfo" class="com.niuys.gdzc.web.struts.action.AddEmployeeInfoAction"
+		parent="baseAction" />
+
+	<bean name="/deleteEmployeeAction" class="com.niuys.gdzc.web.struts.action.DeleteEmployeeAction"
+		parent="baseAction" />
+
+	<bean name="/editEmployeeAction" class="com.niuys.gdzc.web.struts.action.EditEmployeeAction"
+		parent="baseAction" />
+
+	<bean name="/updateEmployeeAction" class="com.niuys.gdzc.web.struts.action.UpdateEmployeeAction"
+		parent="baseAction" />
+
+	<!-- 系统用户管理 -->
+	<bean name="/userManaAction" class="com.niuys.gdzc.web.struts.action.UserManaAction"
+		parent="baseAction" />
+
+	<bean name="/addUserAction" class="com.niuys.gdzc.web.struts.action.AddUserAction"
+		parent="baseAction" />
+
+	<bean name="/deleteUserAction" class="com.niuys.gdzc.web.struts.action.DeleteUserAction"
+		parent="baseAction" />
+
+
+	<bean name="/findUserbyname" class="com.niuys.gdzc.web.struts.action.FindUserbyname"
+		parent="baseAction" />
+
+	<bean name="/updateUser" class="com.niuys.gdzc.web.struts.action.UpdateUserAction"
+		parent="baseAction" />
+
+	<bean name="/updatepwd" class="com.niuys.gdzc.web.struts.action.UpdatepwdAction"
+		parent="baseAction" />
+
+	<!--打印报表 -->
+	<bean name="/printStoreIn" class="com.niuys.gdzc.web.struts.action.PrintStoreInAction"
+		parent="baseAction" />
+
+
+	<bean name="/storeInShowAll" class="com.niuys.gdzc.web.struts.action.StoreInShowAllAction"
+		parent="baseAction" />
+
+
+</beans>

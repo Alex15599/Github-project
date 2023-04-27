@@ -1,0 +1,243 @@
+.table1 {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #999999
+}
+.table2 {
+	BORDER-TOP-WIDTH: 0px; PADDING-RIGHT: 2px; PADDING-LEFT: 2px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; PADDING-BOTTOM: 2px; MARGIN: 0px; PADDING-TOP: 2px; FONT-FAMILY: "宋体"; BORDER-RIGHT-WIDTH: 0px
+}
+.table3 {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: "宋体"
+}
+.tableHead {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: center
+}
+.tableHead_left {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: left
+}
+.tableHead_right {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: right
+}
+.tableBody4 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: left
+}
+.tableBody {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+.tableBodyright {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: right
+}
+.tableBodyleft {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: left
+}
+.tableBody1 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffcc; TEXT-ALIGN: center
+}
+.tableBody2 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: center
+}
+.tableBody3 {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffcccc; TEXT-ALIGN: center
+}
+.check {
+	BORDER-LEFT-COLOR: #ffffff; BORDER-BOTTOM-COLOR: #ffffff; BORDER-TOP-COLOR: #ffffff; BORDER-RIGHT-COLOR: #ffffff
+}
+.tableBody_center {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+.tableBody_right {
+	FONT-SIZE: 12px; LINE-HEIGHT: 15px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: right
+}
+.td_left {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: left
+}
+.td_right {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: "宋体"; BACKGROUND-COLOR: #ebebeb; TEXT-ALIGN: right
+}
+.input {
+	BORDER-RIGHT: #6699cc 1px solid; BORDER-TOP: #6699cc 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #6699cc 1px solid; COLOR: black; BORDER-BOTTOM: #6699cc 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.button {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 9pt; BORDER-LEFT-COLOR: #eeeeee; BACKGROUND: url(../images/back2.gif) #ffffff; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #5a6ca2; CURSOR: pointer; COLOR: #1e7977; BORDER-TOP-COLOR: #eeeeee; FONT-FAMILY: "宋体"; HEIGHT: 15pt; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #5a6ca2
+}
+.button99 {
+	BORDER-RIGHT: #ffffff 1px groove; BORDER-TOP: black 1px; FONT-SIZE: 12pt; BACKGROUND: url(../images/back2.gif) #669999; BORDER-LEFT: black 1px; CURSOR: pointer; COLOR: #1e7977; BORDER-BOTTOM: black 1px; FONT-FAMILY: "宋体"; HEIGHT: 17pt
+}
+.button88 {
+	BORDER-RIGHT: #ffffff 1px groove; BORDER-TOP: black 1px; FONT-SIZE: 12pt; BACKGROUND: url(../images/buttonhand.gif); BORDER-LEFT: black 1px; WIDTH: 126px; CURSOR: pointer; COLOR: #1e7977; BORDER-BOTTOM: black 1px; FONT-FAMILY: "宋体"; HEIGHT: 25pt
+}
+.button2 {
+	BORDER-RIGHT: black 1px groove; BORDER-TOP: black 1px; FONT-SIZE: 9pt; BACKGROUND: url(../images/back3.gif) #dceaf4; BORDER-LEFT: black 1px; CURSOR: pointer; COLOR: #000000; BORDER-BOTTOM: black 1px groove; FONT-FAMILY: "宋体"; HEIGHT: 15pt
+}
+.button1 {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 8pt; BORDER-LEFT-COLOR: #eeeeee; BACKGROUND: url(../images/back2.gif) #ffffff; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #5a6ca2; CURSOR: pointer; BORDER-TOP-COLOR: #eeeeee; FONT-FAMILY: arial; HEIGHT: 20px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #5a6ca2
+}
+.ButtonCss {
+	BORDER-RIGHT: black 1px solid; BORDER-TOP: black 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: black 1px solid; CURSOR: pointer; COLOR: white; BORDER-BOTTOM: black 1px solid; HEIGHT: 22px; BACKGROUND-COLOR: #669acc
+}
+.listbox {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 12px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: "宋体"
+}
+.listbox1 {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; FONT-SIZE: 12px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; FONT-FAMILY: "宋体"
+}
+.title {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; FONT-FAMILY: "宋体"
+}
+.textfield {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: "宋体"
+}
+.textfield1 {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #999999 1px solid; WIDTH: 100%; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: "宋体"
+}
+.textfield2 {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 12px; OVERFLOW: auto; BORDER-LEFT: #999999 1px solid; WIDTH: 100%; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: "宋体"
+}
+FONT {
+	FONT-SIZE: 12px; FONT-FAMILY: "宋体"
+}
+.font10 {
+	FONT-SIZE: 10px; COLOR: #000000; FONT-FAMILY: "宋体"
+}
+.font12 {
+	FONT-SIZE: 12px; FONT-FAMILY: "宋体"
+}
+.font12b {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: "宋体"
+}
+.font14 {
+	FONT-SIZE: 14px; COLOR: #000000; FONT-FAMILY: "宋体"
+}
+.txtLT {
+	BORDER-RIGHT: medium none; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: black 1px groove; BORDER-BOTTOM: medium none; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtLTR {
+	BORDER-RIGHT: black 1px groove; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: black 1px groove; BORDER-BOTTOM: medium none; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtLTB {
+	BORDER-RIGHT: medium none; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: black 1px groove; BORDER-BOTTOM: black 1px groove; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtLTBR {
+	BORDER-RIGHT: black 1px groove; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: black 1px groove; BORDER-BOTTOM: black 1px groove; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtNone {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: 12px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtTop {
+	BORDER-RIGHT: medium none; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.txtTR {
+	BORDER-RIGHT: black 1px groove; BORDER-TOP: black 1px groove; FONT-SIZE: 12px; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none; FONT-FAMILY: "宋体"; HEIGHT: 20px
+}
+.menutd {
+	FONT-SIZE: 9pt; MARGIN: 0px; COLOR: #000000; BACKGROUND-COLOR: #2186b5; TEXT-ALIGN: left
+}
+.input3 {
+	BORDER-RIGHT: #6699cc 1px solid; BORDER-TOP: #6699cc 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #6699cc 1px solid; COLOR: black; BORDER-BOTTOM: #6699cc 1px solid; BACKGROUND-COLOR: #ffffff
+}
+.inputborder0 {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 0px; COLOR: black; BORDER-RIGHT-WIDTH: 0px
+}
+.selectborder0 {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 0px; COLOR: black; BORDER-RIGHT-WIDTH: 0px
+}
+.tdborder0 {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 12px; BORDER-BOTTOM-WIDTH: 0px; COLOR: black; BORDER-RIGHT-WIDTH: 0px
+}
+BODY {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+TD {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+LI {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+P {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+INPUT {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+A {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 150%
+}
+BODY {
+	SCROLLBAR-FACE-COLOR: #82aeb7; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-3DLIGHT-COLOR: #82aeb7; SCROLLBAR-ARROW-COLOR: #408080; SCROLLBAR-TRACK-COLOR: #ffffff; SCROLLBAR-DARKSHADOW-COLOR: #82aeb7
+}
+A:visited {
+	COLOR: #006864; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #ff3333; TEXT-DECORATION: underline
+}
+A:link {
+	COLOR: #669999; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #669999; TEXT-DECORATION: underline
+}
+A {
+	TEXT-TRANSFORM: none; COLOR: #669999; TEXT-DECORATION: underline
+}
+.na {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+SELECT {
+	BORDER-RIGHT: #efefef 1px solid; BORDER-TOP: #666666 1px solid; BORDER-LEFT: #666666 1px solid; LINE-HEIGHT: 120%; BORDER-BOTTOM: #efefef 1px solid; BACKGROUND-COLOR: #ffffff
+}
+TEXTAREA {
+	BORDER-RIGHT: #efefef 1px solid; BORDER-TOP: #666666 1px solid; BORDER-LEFT: #666666 1px solid; LINE-HEIGHT: 120%; BORDER-BOTTOM: #efefef 1px solid; BACKGROUND-COLOR: #ffffff
+}
+INPUT {
+	BORDER-RIGHT: #efefef 1px solid; BORDER-TOP: #666666 1px solid; BORDER-LEFT: #666666 1px solid; LINE-HEIGHT: 120%; BORDER-BOTTOM: #efefef 1px solid; BACKGROUND-COLOR: #ffffff
+}
+HR {
+	COLOR: #bbbbbb
+}
+.menuparent {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt
+}
+.list_td_context {
+	FONT-SIZE: 9pt; COLOR: #000000; BACKGROUND-COLOR: #e8e8e8; TEXT-ALIGN: center
+}
+.list_td_context1 {
+	FONT-SIZE: 9pt; COLOR: #000000; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+.style1 {
+	FONT-SIZE: 14pt; COLOR: #1e7977
+}
+.style7 {
+	FONT-SIZE: 18px
+}
+.style8 {
+	COLOR: #ff0000
+}
+.style11 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14pt
+}
+.style12 {
+	COLOR: #1e7977
+}
+.style13 {
+	FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.option {
+	BORDER-LEFT-COLOR: #ffffff; BORDER-BOTTOM-COLOR: #ffffff; BORDER-TOP-COLOR: #ffffff; BACKGROUND-COLOR: #ffffff; BORDER-RIGHT-COLOR: #ffffff
+}
+.option1 {
+	BORDER-LEFT-COLOR: #ebebeb; BORDER-BOTTOM-COLOR: #ebebeb; BORDER-TOP-COLOR: #ebebeb; BACKGROUND-COLOR: #ebebeb; BORDER-RIGHT-COLOR: #ebebeb
+}
+.radio {
+	BORDER-LEFT-COLOR: #ffffff; BORDER-BOTTOM-COLOR: #ffffff; BORDER-TOP-COLOR: #ffffff; BACKGROUND-COLOR: #ffffff; BORDER-RIGHT-COLOR: #ffffff
+}
+.radio1 {
+	BORDER-LEFT-COLOR: #00ffff; BORDER-BOTTOM-COLOR: #00ffff; BORDER-TOP-COLOR: #00ffff; BACKGROUND-COLOR: #00ffff; BORDER-RIGHT-COLOR: #00ffff
+}
+.radio2 {
+	BORDER-LEFT-COLOR: #e6e6e6; BORDER-BOTTOM-COLOR: #e6e6e6; BORDER-TOP-COLOR: #e6e6e6; BACKGROUND-COLOR: #e6e6e6; BORDER-RIGHT-COLOR: #e6e6e6
+}
+.radiored {
+	BORDER-LEFT-COLOR: #ff0000; BORDER-BOTTOM-COLOR: #ff0000; BORDER-TOP-COLOR: #ff0000; BACKGROUND-COLOR: #ff0000; BORDER-RIGHT-COLOR: #ff0000
+}
+.notnull {
+	BORDER-RIGHT: #999999 1px solid; BACKGROUND-POSITION: right bottom; BORDER-TOP: #999999 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../images/notnull.gif); BORDER-LEFT: #999999 1px solid; BORDER-BOTTOM: #999999 1px solid; BACKGROUND-REPEAT: no-repeat; FONT-FAMILY: "宋体"
+}
