@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+	<formset>
+
+		<form name="addPerAssetForm">
+			<field property="zc_id" depends="required">
+				<arg0 key="inputForm.zc_id" />
+			</field>
+
+			<field property="send_time" depends="required">
+				<arg0 key="inputForm.time" />
+			</field>
+
+			<field property="reason" depends="required">
+				<arg0 key="inputForm.reason" />
+			</field>
+
+		</form>
+
+		<form name="editEmployeeForm">
+			<field property="eage" depends="integer,">
+				<arg0 key="inputForm.eage" />
+			</field>
+
+		</form>
+
+		<form name="employeeInfoForm">
+			<field property="eage" depends="integer">
+				<arg0 key="inputForm.eage" />
+			</field>
+
+			<field property="ephone" depends="integer">
+				<arg0 key="inputForm.ephone" />
+			</field>
+
+			<field property="eno" depends="required">
+				<arg0 key="inputForm.eno" />
+			</field>
+
+			<field property="ename" depends="required">
+				<arg0 key="inputForm.ename" />
+			</field>
+
+		</form>
+
+		<form name="zcForm">
+			<field property="zc_id" depends="required">
+				<arg0 key="inputForm.zc_id" />
+			</field>
+
+			<field property="zc_no" depends="required">
+				<arg0 key="inputForm.zc_no" />
+			</field>
+
+			<field property="zc_name" depends="required">
+				<arg0 key="inputForm.zc_name" />
+			</field>
+
+			<field property="zc_price" depends="required">
+				<arg0 key="inputForm.zc_price" />
+			</field>
+
+			<field property="zc_factory" depends="required">
+				<arg0 key="inputForm.zc_factory" />
+			</field>
+
+			<field property="zc_produceTime" depends="required">
+				<arg0 key="inputForm.zc_produceTime" />
+			</field>
+
+			<field property="zc_buyTime" depends="required">
+				<arg0 key="inputForm.zc_buyTime" />
+			</field>
+
+			<field property="zc_buyer" depends="required">
+				<arg0 key="inputForm.zc_buyer" />
+			</field>
+
+			<field property="zc_type" depends="required">
+				<arg0 key="inputForm.zc_type" />
+			</field>
+
+			<field property="zc_status" depends="required">
+				<arg0 key="inputForm.zc_status" />
+			</field>
+
+			<field property="zc_price" depends="float">
+				<arg0 key="inputForm.zc_price" />
+			</field>
+		</form>
+
+		<form name="addUserForm">
+			<field property="comployeeNo" depends="required">
+				<arg0 key="inputForm.comployeeNo" />
+			</field>
+
+			<field property="userName" depends="required">
+				<arg0 key="inputForm.userName" />
+			</field>
+
+			<field property="password" depends="required">
+				<arg0 key="inputForm.password" />
+			</field>
+
+
+			<field property="rePassword" depends="required,validwhen">
+				<arg position="0" key="rePassword" />
+
+				<arg key="rePassword" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>(password==*this*)</var-value>
+				</var>
+				<msg name="validwhen" key="errors.password2" />
+			</field>
+		</form>
+		
+		<form name="updatepwdForm">
+			<field property="oldpwd" depends="required">
+				<arg0 key="inputForm.oldpwd" />
+			</field>
+			
+			<field property="newpwd" depends="required">
+				<arg0 key="inputForm.password" />
+			</field>
+
+
+			<field property="renewpwd" depends="required,validwhen">
+				<arg position="0" key="rePassword" />
+
+				<arg key="rePassword" />
+				<var>
+					<var-name>test</var-name>
+					<var-value>(newpwd==*this*)</var-value>
+				</var>
+				<msg name="validwhen" key="errors.password2" />
+			</field>
+		
+		
+		</form>
+
+	</formset>
+</form-validation>

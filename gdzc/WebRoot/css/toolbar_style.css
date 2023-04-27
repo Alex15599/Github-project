@@ -1,0 +1,27 @@
+TD {
+	FONT-SIZE: 12px; COLOR: #105cb6
+}
+A:link {
+	COLOR: #105cb6; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #105cb6; LINE-HEIGHT: 20px; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #003; LINE-HEIGHT: 20px
+}
+.bgcontain {
+	MARGIN: 0px auto; WIDTH: 100%
+}
+#menu {
+	BORDER-RIGHT: #709d3e; BORDER-TOP: #709d3e 1px solid; BACKGROUND: #cbe4b0 no-repeat right 50%; BORDER-LEFT: #709d3e; COLOR: #bad098; BORDER-BOTTOM: #709d3e; HEIGHT: 25px
+}
+#menu A {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 8px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #325b0a; LINE-HEIGHT: 25px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+#menu A:hover {
+	BACKGROUND: #95b274; COLOR: #fff; LINE-HEIGHT: 25px; BORDER-BOTTOM: #7c9a57 3px solid; HEIGHT: 25px; TEXT-DECORATION: none
+}
+.tableborder {
+	border: 1px solid #0099FF;
+}
