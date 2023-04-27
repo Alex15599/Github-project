@@ -1,0 +1,382 @@
+<!--
+/**
+ * 存放位置 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2021-10-12 12:47:14
+ */
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate('工作台')}">工作台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="/assets/libs/css/app_workbench.css" th:href="@{/assets/libs/css/app_workbench.css}" rel="stylesheet"/>
+
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+    <style>
+        .layui-card {border:1px solid #f2f2f2;border-radius:5px;}
+        .icon {margin-right:10px;color:#1aa094;}
+        .icon-cray {color:#ffb800!important;}
+        .icon-blue {color:#1e9fff!important;}
+        .icon-tip {color:#ff5722!important;}
+        .layuimini-qiuck-module {text-align:center;margin-top: 10px}
+        .layuimini-qiuck-module a i {display:inline-block;width:100%;height:60px;line-height:60px;text-align:center;border-radius:2px;font-size:30px;background-color:#F8F8F8;color:#333;transition:all .3s;-webkit-transition:all .3s;}
+        .layuimini-qiuck-module a cite {position:relative;top:2px;display:block;color:#666;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:14px;}
+        .welcome-module {width:100%;height:210px;}
+        .panel {background-color:white!important;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
+        .panel-body {padding:10px}
+        .panel-title {margin-top:0;margin-bottom:0;font-size:12px;color:inherit}
+        .label {display:inline;padding:.2em .6em .3em;font-size:75%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em;margin-top: .3em;}
+        .layui-red {color:red}
+        .main_btn > p {height:40px;}
+        .layui-bg-number {background-color:#F8F8F8;}
+        .layuimini-notice:hover {background:#f6f6f6;}
+        .layuimini-notice {padding:7px 16px;clear:both;font-size:12px !important;cursor:pointer;position:relative;transition:background 0.2s ease-in-out;}
+        .layuimini-notice-title,.layuimini-notice-label {
+            padding-right: 70px !important;text-overflow:ellipsis!important;overflow:hidden!important;white-space:nowrap!important;}
+        .layuimini-notice-title {line-height:28px;font-size:14px;}
+        .layuimini-notice-extra {position:absolute;top:50%;margin-top:-8px;right:16px;display:inline-block;height:16px;color:#999;}
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td,th {
+            padding: 0;
+        }
+        .pure-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            empty-cells: show;
+            border: 1px solid #cbcbcb;
+        }
+        .pure-table caption {
+            color: #000;
+            font: italic 85%/1 arial,sans-serif;
+            padding: 1em 0;
+
+            text-align: center;
+        }
+        .pure-table td,.pure-table th {
+            border-left: 1px solid #cbcbcb;
+            border-width: 0 0 0 1px;
+            font-size: inherit;
+            margin: 0;
+            overflow: visible;
+            padding: .5em 1em;
+        }
+
+        .pure-table thead {
+            background-color: #e0e0e0;
+            color: #000;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .pure-table td {
+            background-color: transparent;
+        }
+
+        .pure-table-odd td {
+            background-color: #f2f2f2;
+        }
+
+
+        .hh{
+            height: 150px;
+        }
+
+        .hm{
+            margin-top:7px;
+            margin-bottom:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<style>
+    table{
+    }
+    table, td, th
+    {
+        overflow-y: scroll;
+        border:1px solid #7CD8A5;
+    }
+    th
+    {
+        background-color:#7E96FE;
+        color:white;
+    }
+    .custTable{
+        overflow:auto;
+        width:100%;
+        overflow-y: scroll;
+        text-align: center;
+
+    }
+    .custTable,tr,td{
+        height: 35px!important;
+    }
+
+</style>
+
+
+<div class="layui-fluid">
+
+
+    <div class="layui-row layui-col-space10" >
+
+        <div class="layui-col-md12"  >
+            <div class="panel layui-bg-number bannerF " >
+                <div class="panel-body " >
+                    <div class="title ht" th:text="${lang.translate('简单审批')}">
+                        简单审批
+                    </div>
+                    <div class="panel-content">
+                        <div class="box">
+<!--                            <div id="djsp" th:if="${perm.checkAuth('my-business:asset-insert')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    登记审批-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+                            <div id="changeJC" th:if="${perm.checkAuth('my-business:change-base-info')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('基础变更审批')}" >
+                                    基础变更审批
+                                </div>
+                            </div>
+
+                            <div id="changeWB" th:if="${perm.checkAuth('my-business:change-maintenance')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('维保变更审批')}">
+                                    维保变更审批
+                                </div>
+                            </div>
+
+                            <div id="changeCW" th:if="${perm.checkAuth('my-business:change-finance')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('财务变更审批')}">
+                                    财务变更审批
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div style="margin-top:40px"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-col-md12"  >
+            <div class="panel layui-bg-number bannerF " >
+                <div class="panel-body " >
+                    <div class="title ht" th:text="${lang.translate('资产管理')}">
+                        资产管理
+                    </div>
+                    <div class="panel-content">
+                        <div class="box">
+                            <div id="zcrk" th:if="${perm.checkAuth('eam_asset_storage:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('资产入库')}">
+                                    资产入库
+                                </div>
+                            </div>
+
+
+                            <div id="zcpf" th:if="${perm.checkAuth('eam_asset_collection:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('资产派发')}">
+                                    资产派发
+                                </div>
+                            </div>
+
+                            <div id="zcdb" th:if="${perm.checkAuth('eam_asset_allocation:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel"  th:text="${lang.translate('资产调拨')}">
+                                    资产调拨
+                                </div>
+                            </div>
+
+                            <div id="zczy" th:if="${perm.checkAuth('eam_asset_tranfer:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('资产转移')}">
+                                    资产转移
+                                </div>
+                            </div>
+
+<!--                            <div id="zcbf" th:if="${perm.checkAuth('eam_asset_scrap:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    资产报废-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+                        </div>
+                    </div>
+
+                    <div style="margin-top:40px"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-col-md12"  >
+            <div class="panel layui-bg-number bannerF " >
+                <div class="panel-body " >
+                    <div class="title ht" th:text="${lang.translate('软件管理')}">
+                        软件管理
+                    </div>
+                    <div class="panel-content">
+                        <div class="box">
+                            <div id="rjdj" th:if="${perm.checkAuth('eam_asset_software:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/kczcjy.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('软件登记')}">
+                                    软件登记
+                                </div>
+                            </div>
+
+
+                            <div id="rjff" th:if="${perm.checkAuth('eam_asset_software_distribute:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/kczcly.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('软件分发')}">
+                                    软件分发
+                                </div>
+                            </div>
+
+                            <div id="rjwb" th:if="${perm.checkAuth('eam_asset_software_maintenance:mngr')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
+                                </div>
+                                <div class="boxLabel" th:text="${lang.translate('软件维保')}">
+                                    软件维保
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="margin-top:40px"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+<!--        <div class="layui-col-md12"  >-->
+<!--            <div class="panel layui-bg-number bannerF " >-->
+<!--                <div class="panel-body " >-->
+<!--                    <div class="title ht">-->
+<!--                        库存管理-->
+<!--                    </div>-->
+<!--                    <div class="panel-content">-->
+<!--                        <div class="box">-->
+<!--                            <div id="kcrk" th:if="${perm.checkAuth('eam_asset_stock_goods_in:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/haocailingyong.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    库存入库-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+<!--                            <div id="kcck" th:if="${perm.checkAuth('eam_asset_stock_goods_out:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/haocailingyongsq.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    库存出库-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div id="kctz" th:if="${perm.checkAuth('eam_asset_stock_goods_adjust:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/haocaituihuan.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    库存调整-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div id="kcdb" th:if="${perm.checkAuth('eam_asset_stock_goods_tranfer:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/haocaicaigou.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    库存调拨-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div style="margin-top:40px"></div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+    </div>
+
+
+
+
+
+</div>
+
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+
+<script th:inline="javascript">
+    var TENANT_ID = [[${tenantId}]] ;
+</script>
+
+<script th:src="'/business/eam/asset_report/report_manage_dashboard.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset_report/report_manage_dashboard_ext.js?'+${cacheKey}"></script>
+</body>
+</html>

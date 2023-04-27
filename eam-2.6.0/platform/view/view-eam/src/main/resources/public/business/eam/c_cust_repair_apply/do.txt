@@ -1,0 +1,15 @@
+
+需要将一下资源设置开放
+
+/service-eam/eam-c-cust-repair-apply/query-paged-list
+/service-eam/eam-c-cust-repair-apply/get-by-id
+/service-eam/eam-c-cust-repair-apply/insert
+/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html
+/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_public.html
+/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_full_p.html
+
+
+/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_full_p.html,/service-eam/eam-c-cust-repair-apply/query-paged-list,/service-eam/eam-c-cust-repair-apply/get-by-id,/service-eam/eam-c-cust-repair-apply/insert,/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_public.html
+
+访问地址：
+http://127.0.0.1:8089/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html

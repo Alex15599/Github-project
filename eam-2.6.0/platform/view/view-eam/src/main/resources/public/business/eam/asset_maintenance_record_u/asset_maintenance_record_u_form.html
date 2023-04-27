@@ -1,0 +1,750 @@
+<!--
+/**
+ * 维保更新记录 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-10-29 15:12:33
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+	<title th:text="${lang.translate('维保更新记录')}">维保更新记录</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+        .layui-form-label {
+            width: 150px;
+        }
+        .layui-input-block {
+            margin-left: 185px;
+        }
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+
+        <input name="id" id="id"  type="hidden"/>
+
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-5716-fieldset">
+            <legend th:text="${lang.translate('维保商')}" >维保商</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-5716-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保商')}">维保商</div></div>
+                        <div class="layui-input-block ">
+                            <div id="maintainerId" input-type="select" th:data="${'/service-eam/eam-maintainer/query-list'}" extraParam="{}"></div>
+                        </div>
+                    </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintainerId" lay-filter="sMaintainerId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintainerId" lay-filter="uMaintainerId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintainerId" lay-filter="uSMaintainerId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4528-fieldset">
+            <legend th:text="${lang.translate('维保厂商名称')}">维保厂商名称</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-4528-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保厂商名称')}">维保厂商名称</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="maintainerName" id="maintainerName" name="maintainerName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('维保厂商名称') }" type="text" class="layui-input"  />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintainerName" lay-filter="sMaintainerName" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintainerName" lay-filter="uMaintainerName" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintainerName" lay-filter="uSMaintainerName" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3208-fieldset">
+            <legend th:text="${lang.translate('维保状态')}"> 维保状态</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-3208-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保状态')}">维保状态</div></div>
+                        <div class="layui-input-block ">
+                            <div id="maintenanceStatus" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintenance_status'}" extraParam="{}"></div>
+                        </div>
+                    </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintenanceStatus" lay-filter="sMaintenanceStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintenanceStatus" lay-filter="uMaintenanceStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintenanceStatus" lay-filter="uSMaintenanceStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4376-fieldset">
+            <legend th:text="${lang.translate('维保方式')}">维保方式</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-4376-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保方式')}">维保方式</div></div>
+                        <div class="layui-input-block ">
+                            <div id="maintenanceMethod" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintenance_method'}" extraParam="{}"></div>
+                        </div>
+                    </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintenanceMethod" lay-filter="sMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintenanceMethod" lay-filter="uMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintenanceMethod" lay-filter="uSMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2989-fieldset">
+            <legend th:text="${lang.translate('建议维保方式')}"  >建议维保方式</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-2989-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('建议维保方式')}">建议维保方式</div></div>
+                        <div class="layui-input-block ">
+                            <div id="suggestMaintenanceMethod" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_suggest_maintenance_method'}" extraParam="{}"></div>
+                        </div>
+                    </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sSuggestMaintenanceMethod" lay-filter="sSuggestMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSuggestMaintenanceMethod" lay-filter="uSuggestMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSSuggestMaintenanceMethod" lay-filter="uSSuggestMaintenanceMethod" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8037-fieldset">
+            <legend th:text="${lang.translate('联系人')}"></legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-8037-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('联系人')}">联系人</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="contacts" id="contacts" name="contacts" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('联系人') }" type="text" class="layui-input"  />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sContacts" lay-filter="sContacts" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uContacts" lay-filter="uContacts" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSContacts" lay-filter="uSContacts" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4821-fieldset">
+            <legend th:text="${lang.translate('联系方式')}"></legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-4821-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('联系方式')}">联系方式</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="contactInformation" id="contactInformation" name="contactInformation" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('联系方式') }" type="text" class="layui-input"  />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sContactInformation" lay-filter="sContactInformation" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uContactInformation" lay-filter="uContactInformation" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSContactInformation" lay-filter="uSContactInformation" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2309-fieldset">
+            <legend th:text="${lang.translate('负责人')}">负责人</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-2309-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('负责人')}">负责人</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="director" id="director" name="director" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('负责人') }" type="text" class="layui-input"  />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sDirector" lay-filter="sDirector" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uDirector" lay-filter="uDirector" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSDirector" lay-filter="uSDirector" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3607-fieldset">
+            <legend th:text="${lang.translate('维保开始时间')}" >维保开始时间</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-3607-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保开始时间')}">维保开始时间</div></div>
+                        <div class="layui-input-block ">
+                            <input input-type="date" lay-filter="maintenanceStartDate" id="maintenanceStartDate" name="maintenanceStartDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('维保开始时间') }" type="text" class="layui-input"    lay-verify=""   />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintenanceStartDate" lay-filter="sMaintenanceStartDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintenanceStartDate" lay-filter="uMaintenanceStartDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintenanceStartDate" lay-filter="uSMaintenanceStartDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1591-fieldset">
+            <legend th:text="${lang.translate('维保结束时间')}" >维保结束时间</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-1591-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('维保到期时间')}">维保到期时间</div></div>
+                        <div class="layui-input-block ">
+                            <input input-type="date" lay-filter="maintenanceEndDate" id="maintenanceEndDate" name="maintenanceEndDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('维保到期时间') }" type="text" class="layui-input"    lay-verify=""   />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintenanceEndDate" lay-filter="sMaintenanceEndDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintenanceEndDate" lay-filter="uMaintenanceEndDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintenanceEndDate" lay-filter="uSMaintenanceEndDate" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2124-fieldset">
+            <legend th:text="${lang.translate('维保备注')}">维保备注</legend>
+        </fieldset>
+
+        <div class="layui-row form-row" id="random-2124-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="maintenanceNotes" id="maintenanceNotes" name="maintenanceNotes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
+                        </div>
+                    </div>
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="sMaintenanceNotes" lay-filter="sMaintenanceNotes" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='disable' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uMaintenanceNotes" lay-filter="uMaintenanceNotes" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('更新方式')}">更新方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="uSMaintenanceNotes" lay-filter="uSMaintenanceNotes" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='none' || stat.index==-1)}">
+                    </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 20px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_maintenance_record_u:create','eam_asset_maintenance_record_u:update','eam_asset_maintenance_record_u:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var RADIO_SMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SSUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_USUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USSUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var VALIDATE_CONFIG={"uContactInformation":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uMaintenanceNotes":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uMaintenanceMethod":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSMaintenanceEndDate":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSMaintainerName":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uMaintenanceEndDate":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSuggestMaintenanceMethod":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sMaintenanceStartDate":{"labelInForm":"状态","inputType":"radio_box","required":true},"maintenanceEndDate":{"date":true,"labelInForm":"维保到期时间","inputType":"date_input"},"sContactInformation":{"labelInForm":"状态","inputType":"radio_box","required":true},"uSMaintenanceNotes":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uMaintenanceStatus":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSMaintenanceStartDate":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sMaintenanceMethod":{"labelInForm":"状态","inputType":"radio_box","required":true},"uSContactInformation":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sDirector":{"labelInForm":"状态","inputType":"radio_box","required":true},"uMaintenanceStartDate":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSMaintenanceStatus":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sContacts":{"labelInForm":"状态","inputType":"radio_box","required":true},"sSuggestMaintenanceMethod":{"labelInForm":"状态","inputType":"radio_box","required":true},"uMaintainerId":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sMaintainerName":{"labelInForm":"状态","inputType":"radio_box","required":true},"uContacts":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uDirector":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSMaintenanceMethod":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sMaintainerId":{"labelInForm":"状态","inputType":"radio_box","required":true},"sMaintenanceNotes":{"labelInForm":"状态","inputType":"radio_box","required":true},"uSDirector":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"sMaintenanceStatus":{"labelInForm":"状态","inputType":"radio_box","required":true},"uSMaintainerId":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSContacts":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"maintenanceStartDate":{"date":true,"labelInForm":"维保开始时间","inputType":"date_input"},"sMaintenanceEndDate":{"labelInForm":"状态","inputType":"radio_box","required":true},"uMaintainerName":{"labelInForm":"更新方式","inputType":"radio_box","required":true},"uSSuggestMaintenanceMethod":{"labelInForm":"更新方式","inputType":"radio_box","required":true}};
+    var AUTH_PREFIX="eam_asset_maintenance_record_u";
+
+    // maintenanceUpdateId
+    var MAINTENANCE_UPDATE_ID = [[${maintenanceUpdateId}]] ;
+    // ids
+    var IDS = [[${ids}]] ;
+
+</script>
+
+
+
+<script th:src="'/business/eam/asset_maintenance_record_u/asset_maintenance_record_u_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset_maintenance_record_u/asset_maintenance_record_u_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+server:
+  session:
+    timeout: 28800s
+  servlet:
+    session:
+      secure: true
+      http-only: true
+      # 会话超时时间，如 30s , 20m 等
+      timeout: 28800s
+  port: 8099
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: service-bpm
+    description: Foxnic Web BPM
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    # Druid 监控 , 访问 ${url-prefix}/login.html
+    monitor:
+      url-prefix: druid
+      username: root
+      password: root
+      #allow: *
+      #deny: 192.168.1.73
+      resetEnable: true
+    druid:
+      primary:
+        encrypt:
+          enable: true
+          file:
+            windows: d:/foxnic/passwd.txt
+            mac: /Users/Shared/foxnic/passwd.txt
+            linux: /foxnic/passwd.txt
+        # 8.x
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        # 5.x
+        driver-class-name: com.mysql.jdbc.Driver
+        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
+        username: tD5wkJAfnCt04A+Y+QN5GA==
+        password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
+#        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+#        username: root
+#        password: xxx
+        # 启动程序时，在连接池中初始化多少个连接
+        initialSize: 16
+        # 连接池中最多支持多少个活动会话
+        maxActive: 128
+        # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
+        maxWait: 3000
+        # 池中某个连接的空闲时长达到 N 毫秒后, 连接池在下次检查空闲连接时，将回收该连接,要小于防火墙超时设置
+        minEvictableIdleTimeMillis: 160000
+        maxEvictableIdleTimeMillis: 230000
+        # 检查空闲连接的频率，单位毫秒, 非正整数时表示不进行检查程序没有close连接且空闲时长超过 minEvictableIdleTimeMillis,则会执行validationQuery指定的SQL,以保证该程序连接不会池kill掉,其范围不超过minIdle指定的连接个数。
+        timeBetweenEvictionRunsMillis: 60000
+        # 回收空闲连接时，将保证至少有minIdle个连接.
+        minIdle: 8
+        # 要求程序从池中get到连接后, N 秒后必须close,否则druid 会强制回收该连接,不管该连接中是活动还是空闲。
+        removeAbandoned: false
+        # 设置druid 强制回收连接的时限，当程序从池中get到连接开始算起，超过此值后，druid将强制回收该连接，单位秒。
+        removeAbandonedTimeout: 86400000
+        # 当druid强制回收连接后，是否将stack trace 记录到日志中
+        logAbandoned: true
+        # 当程序请求连接，池在分配连接时，是否先检查该连接是否有效。(高效)
+        testWhileIdle: true
+        # 用来保持连接有效性的，只有空闲时间大于keepAliveBetweenTimeMillis并且小于minEvictableIdleTimeMillis该参数才会有用
+        keepAlive: true
+        # 检查池中的连接是否仍可用的 SQL 语句,drui会连接到数据库执行该SQL, 如果正常返回，则表示连接可用，否则表示连接不可用
+        validationQuery: select 1
+        # 程序 申请 连接时,进行连接有效性检查（低效，影响性能）
+        testOnBorrow: false
+        # 程序 返还 连接时,进行连接有效性检查（低效，影响性能）
+        testOnReturn: false
+        # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+        poolPreparedStatements: false
+        # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+        maxOpenPreparedStatements: -1
+        # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+        maxPoolPreparedStatementPerConnectionSize: -1
+        # 是否打印语句，生产环境建议关闭
+        printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: true
+        # 是否输出调用栈
+        printSQLCallstack: false
+  thymeleaf:
+    prefix: classpath:/public/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: HTML5
+    cache: false
+#  session:
+#    store-type: redis # 使用 redis 存储session
+  redis:
+    # 是否启用单节点的 redis
+    enable: false
+    pool:
+      #连接池最大连接数（使用负值表示没有限制）
+      max-active: 8
+      #连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+      #连接池中的最大空闲连接
+      max-idle: 8
+      #连接池中的最小空闲连接
+      min-idle: 0
+      #连接超时时间（毫秒）
+      timeout: 30000
+    # 单节配置
+    port: 6379
+    host: 127.0.0.1
+    password:
+    # 哨兵配置
+    sentinel:
+      # 是否启用哨兵模式的 redis
+      enable: false
+      master: common
+      nodes: 192.168.1.84:26379,192.168.1.85:26379
+    #集群配置
+    cluster:
+      # 是否启用集群模式的 redis
+      enable: false
+      nodes: 192.168.1.24:6389,192.168.1.24:6479,192.168.1.24:6579
+
+
+#设置开发选项
+develop:
+  language: confuse
+  start-relation-monitor: true
+  deploy:
+    enable: true
+    # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
+    projects:  ../view/view-console
+
+
+foxnic:
+  # 设置 API 接口
+  api:
+    # 是否开启 API 日志输出
+    log-enable: true
+  # 设置 BPM 相关内容
+  bpm:
+    enable: true
+    debug:
+      enable: true
+      process-definition-code-list: eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,wo_server_apply,wo_network_strategy_apply,wo_slb_strategy_appl
+  cache:
+    # 默认配置
+    default:
+      # local,remote,both,none
+      mode: both
+      # 本地缓存配置 : 最大元素个数
+      local-limit: 10240
+      # 本地缓存配置 : 本地缓存超时时长；-1 表示永不过期
+      local-expire: 1200000
+      # 远程缓存配置 :  超时 20 分钟，单位毫秒; -1 表示永不过期
+      remote-expire: 1200000
+  # 配置集群节点简单替代注册中心，如果启用微服务，则一下配置无效
+  cluster:
+    # 节点间用于通信的 key，各节点要保持一致
+    key: FOXNIC-EAM-202200701-3386
+    service:
+      service-camunda:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8099,1 | http://127.0.0.1:8099,1
+      service-bpm:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-hrm:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-oauth:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-system:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-storage:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-eam:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
+      service-workorder:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
+      service-oa:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
+
+logging:
+  config: classpath:logback-config.xml
+  level:
+    org.camunda: debug
+
+#禁止自动扫描API
+springfox:
+  documentation:
+    auto-startup: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+knife4j:
+  enable: true
+  title: ${spring.application.name}
+  description: ${spring.application.description}
+  version: 1.0
+
+
+# camunda 流程引擎配置
+camunda:
+  webapp:
+    enabled: true
+  filter:
+    create: All tasks
+  bpm:
+    enabled: true
+    # 请勿配置此值
+    #process-engine-name: foxnic
+    admin-user:
+      id: 110588348101165911
+      password: 123456
+      firstName: admin
+    eventing:
+      execution: true
+      history: true
+      task: true

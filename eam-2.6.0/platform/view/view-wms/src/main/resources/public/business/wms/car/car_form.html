@@ -1,0 +1,177 @@
+<!--
+/**
+ * 车辆管理 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-03-04 15:01:47
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+	<title th:text="${lang.translate('车辆管理')}">车辆管理</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+
+
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="default-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column" >
+
+                <!-- text_input : 主键 ,  id -->
+                <div class="layui-form-item" style="display: none">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 车号 ,  carNumber -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('车号')}">车号</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="carNumber" id="carNumber" name="carNumber" th:placeholder="${ lang.translate('请输入'+'车号') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 车型 ,  carModel -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('车型')}">车型</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="carModel" id="carModel" name="carModel" th:placeholder="${ lang.translate('请输入'+'车型') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- number_input : 最大载重 ,  maxWeight  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('最大载重')}">最大载重</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="maxWeight" id="maxWeight" name="maxWeight" th:placeholder="${ lang.translate('请输入'+'最大载重') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 最大体积 ,  maxVolumn  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('最大体积')}">最大体积</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="maxVolumn" id="maxVolumn" name="maxVolumn" th:placeholder="${ lang.translate('请输入'+'最大体积') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 载人数 ,  maxPeople  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('载人数')}">载人数</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="maxPeople" id="maxPeople" name="maxPeople" th:placeholder="${ lang.translate('请输入'+'载人数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- text_input : 驾照 ,  driveNumber -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('驾照')}">驾照</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="driveNumber" id="driveNumber" name="driveNumber" th:placeholder="${ lang.translate('请输入'+'驾照') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 姓名 ,  user -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('姓名')}">姓名</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="user" id="user" name="user" th:placeholder="${ lang.translate('请输入'+'姓名') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 联系方式 ,  mobile -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('联系方式')}">联系方式</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="mobile" id="mobile" name="mobile" th:placeholder="${ lang.translate('请输入'+'联系方式') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 车牌 ,  carValue -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('车牌')}">车牌</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="carValue" id="carValue" name="carValue" th:placeholder="${ lang.translate('请输入'+'车牌') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 区域 ,  area -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('区域')}">区域</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="area" id="area" name="area" th:placeholder="${ lang.translate('请输入'+'区域') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_area : 备注 ,  notes  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 120px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('wms_car:create','wms_car:update','wms_car:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var VALIDATE_CONFIG={};
+    var AUTH_PREFIX="wms_car";
+
+
+</script>
+
+
+
+<script th:src="'/business/wms/car/car_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/wms/car/car_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

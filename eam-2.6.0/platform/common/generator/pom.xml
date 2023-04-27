@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dt.platform</groupId>
+        <artifactId>parent</artifactId>
+        <version>2.5.0</version>
+        <relativePath>../../pom.xml</relativePath>
+        <!-- lookup parent from repository -->
+    </parent>
+    <artifactId>generator</artifactId>
+    <name>generator</name>
+    <description>Code Generator</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>framework-boot</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>framework-cloud</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>proxy</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foxnicweb</groupId>
+            <artifactId>foxnic-generator</artifactId>
+            <version>${foxnic.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>domain</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>proxy</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-eam</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-datacenter</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-ops</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-hr</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-common</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-knowledgebase</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-vehicle</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-workorder</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-mobile</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-oa</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-wms</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-customer</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-customer</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-customer</artifactId>
+            <version>2.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-wms</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-oa</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-console</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-hr</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-eam</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-datacenter</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-ops</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-common</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-knowledgebase</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-vehicle</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-workorder</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-mobile</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <defaultGoal>compile</defaultGoal>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+</project>

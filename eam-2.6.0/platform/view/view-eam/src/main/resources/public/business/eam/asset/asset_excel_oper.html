@@ -1,0 +1,185 @@
+<!--
+/**
+ * 资产 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2021-10-26 15:27:48
+ */
+ -->
+<!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate('资产批量导入')}">资产批量导入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon"> <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+
+</head>
+<style>
+    /*---滚动条默认显示样式--*/
+    ::-webkit-scrollbar-thumb{
+        background-color:#DEDFDF;
+        height:50px;
+        outline-offset:-2px;
+        outline:3px solid #fff;
+        -webkit-border-radius:4px;
+        border: 3px solid #fff;
+    }
+    /*---鼠标点击滚动条显示样式--*/
+    ::-webkit-scrollbar-thumb:hover{
+        background-color:#DEDFDF;
+        height:50px;
+        -webkit-border-radius:4px;
+    }
+    /*---滚动条大小--*/
+    ::-webkit-scrollbar{
+        width:8px;
+        height:8px;
+    }
+    /*---滚动框背景样式--*/
+    ::-webkit-scrollbar-track-piece{
+        background-color:white;
+        -webkit-border-radius:1px;
+    }
+</style>
+<body style=" ">
+
+<div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:97%;left: 0px;top: 0px;"></div>
+
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
+    <button class="layui-btn asset-submit-button" style="margin-right: 15px"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+</div>
+
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+
+
+<link href="/assets/libs/luckysheet/plugins/css/pluginsCss.css"   th:href="@{/assets/libs/luckysheet/plugins/css/pluginsCss.css}"   rel="stylesheet"/>
+<link href="/assets/libs/luckysheet/plugins/plugins.css"          th:href="@{/assets/libs/luckysheet/plugins/plugins.css}"          rel="stylesheet"/>
+<link href="/assets/libs/luckysheet/css/luckysheet.css"           th:href="@{/assets/libs/luckysheet/css/luckysheet.css}"           rel="stylesheet"/>
+<link href="/assets/libs/luckysheet/assets/iconfont/iconfont.css" th:href="@{/assets/libs/luckysheet/assets/iconfont/iconfont.css}" rel="stylesheet"/>
+<link href="/assets/libs/luckysheet/assets/iconfont/iconfont.css" rel="stylesheet"/>
+<script th:src="@{/assets/libs/luckysheet/plugins/js/plugin.js}"></script>
+<script th:src="@{/assets/libs/luckysheet/luckysheet.umd.js}"></script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var VALIDATE_CONFIG={};
+    var AUTH_PREFIX="eam_asset_excel";
+    var sheetConfigStr =  [[${sheetConfig}]];
+    var sheetConfig =  JSON.parse(sheetConfigStr);
+    sheetConfig.row=30;
+    console.log(sheetConfig);
+    sheetConfig.row=30;
+    $(function () {
+        //配置项
+        var options = {
+            lang: 'zh',
+            frozen:{ type: 'row'},
+            row:10,
+            showtoolbar: false,
+            enableAddBackTop:false,
+            defaultColWidth:150,
+            column:60,
+            ch_width: 6000,
+            cellRightClickConfig:{
+                //   copy: false, // 复制
+                //   copyAs: false, // 复制为
+                //   paste: false, // 粘贴
+                //    insertRow: false, // 插入行
+                //    insertColumn: false, // 插入列
+                //    deleteRow: false, // 删除选中行
+                //   deleteColumn: false, // 删除选中列
+                //   deleteCell: false, // 删除单元格
+                //   hideRow: false, // 隐藏选中行和显示选中行
+                //   hideColumn: false, // 隐藏选中列和显示选中列
+                //   rowHeight: false, // 行高
+                //   columnWidth: false, // 列宽
+                //   clear: false, // 清除内容
+                matrix: false, // 矩阵操作选区
+                sort: false, // 排序选区
+                filter: false, // 筛选选区
+                chart: false, // 图表生成
+                image: false, // 插入图片
+                link: false, // 插入链接
+                data: false, // 数据验证
+                cellFormat: false // 设置单元格格式
+            },
+            sheetRightClickConfig:{
+                delete: false, // 删除
+                copy: false, // 复制
+                rename: false, //重命名
+                color: false, //更改颜色
+                hide: false, //隐藏，取消隐藏
+                move: false, //向左移，向右移
+            },
+            showtoolbarConfig:{
+                // undoRedo: false, //撤销重做，注意撤消重做是两个按钮，由这一个配置决定显示还是隐藏
+                // paintFormat: false, //格式刷
+                currencyFormat: false, //货币格式
+                percentageFormat: false, //百分比格式
+                numberDecrease: false, // '减少小数位数'
+                numberIncrease: false, // '增加小数位数
+                // moreFormats: false, // '更多格式'
+                // font: false, // '字体'
+                // fontSize: false, // '字号大小'
+                // bold: false, // '粗体 (Ctrl+B)'
+                // italic: false, // '斜体 (Ctrl+I)'
+                // strikethrough: false, // '删除线 (Alt+Shift+5)'
+                //underline: false, // '下划线 (Alt+Shift+6)'
+                //textColor: false, // '文本颜色'
+                //fillColor: false, // '单元格颜色'
+                //border: false, // '边框'
+                mergeCell: false, // '合并单元格'
+                horizontalAlignMode: false, // '水平对齐方式'
+                verticalAlignMode: false, // '垂直对齐方式'
+                textWrapMode: false, // '换行方式'
+                // textRotateMode: false, // '文本旋转方式'
+                // image:false, // '插入图片'
+                // link:false, // '插入链接'
+                // chart: false, // '图表'（图标隐藏，但是如果配置了chart插件，右击仍然可以新建图表）
+                // postil:  false, //'批注'
+                // pivotTable: false,  //'数据透视表'
+                function: false, // '公式'
+                frozenMode: false, // '冻结方式'
+                //  sortAndFilter: false, // '排序和筛选'
+                //conditionalFormat: false, // '条件格式'
+                dataVerification: false, // '数据验证'
+                splitColumn: false, // '分列'
+                screenshot: false, // '截图'
+                findAndReplace: false, // '查找替换'
+                protection:false, // '工作表保护'
+                print:false, // '打印'
+            },
+            data:[sheetConfig],
+            sheetFormulaBar:false,
+            showinfobar:false,
+            enableAddRow:false,
+            title:'资产表格',
+            container: 'luckysheet' //luckysheet为容器id
+        }
+        luckysheet.create(options);
+      //  var sheet1=luckysheet.getAllSheets()[0];
+
+    })
+</script>
+
+
+<script th:src="'/business/eam/asset/asset_excel_oper_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset/asset_excel_oper.js?'+${cacheKey}"></script>
+
+</body>
+</html>

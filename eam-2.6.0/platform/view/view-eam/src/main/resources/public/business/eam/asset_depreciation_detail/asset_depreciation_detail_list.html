@@ -1,0 +1,242 @@
+<!--
+/**
+ * 折旧明细 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-12-10 14:40:50
+ */
+ -->
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate('折旧明细',null,'eam_asset_dep_detail')}">折旧明细</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 折旧方案 , depreciationId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 折旧操作 , operId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 折旧动作 , actionCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 首次折旧方式 , firstDepreciationMethod ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 折旧方式 , depreciationMethod ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 资产 , assetId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 资产类别 , assetCategoryId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 财务分类 , assetFinanceCategoryId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 资产编码 , assetCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产编码',null,'eam_asset_dep_detail')}" class="search-label assetCode-label">资产编码</span><span class="search-colon">:</span></div>
+                        <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 资产原值 , assetOriginalUnitPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 含税单价 , assetPurchaseUnitPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 资产净值 , assetNavPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 税额 , assetTaxAmountRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 可使用期限(资产) , assetServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 可使用期限(财务) , assetFinanceServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 本期残值率 , assetResidualsRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 本期残值 , assetResidualsPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期初)期初原值 , sOriginalPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期初)期初累计折旧 , sDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期初)期初净值 , sNavAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期初)期初可回收净额 , sRecoverableAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 已使用期限 , cUsedServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (本期发生)原值增加 , cOriginalPriceIncrease ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (本期发生)本期折旧额 , cDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (本期发生)本年累计折旧额 , cYearDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期末)期末原值 , eOriginalPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期末)期末累计折旧 , eDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期末)期末净值 , eNavAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- (期末)期末可回收金额 , eRecoverableAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 会计期间已使用期限 , accountingServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 首次折旧 , firstDepreciation ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 使用人ID , useUserId ,typeName=button, isHideInSearch=true -->
+                    <!-- 使用人 , useUserName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 管理人员 , managerId ,typeName=button, isHideInSearch=true -->
+                    <!-- 管理人员 , managerName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 部门ID , useOrgId ,typeName=button, isHideInSearch=true -->
+                    <!-- 使用部门 , useOrgName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 财务选项 , financialOptionKey ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 费用项目 , expenseItemKey ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 源资产 , detailIdSource ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 目标资产 , detailIdTarget ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上次折旧单据 , lastOperId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 上次折旧时间 , lastOperTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 标签 , label ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 结果字符串 , resultValueStr ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 结果浮点 , resultValueFloat ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 财务分类 , assetFinanceCategoryName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('财务分类',null,'eam_asset_dep_detail')}" class="search-label assetFinanceCategoryName-label">财务分类</span><span class="search-colon">:</span></div>
+                        <input id="assetFinanceCategoryName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 资产名称 , assetName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产名称',null,'eam_asset_dep_detail')}" class="search-label assetName-label">资产名称</span><span class="search-colon">:</span></div>
+                        <input id="assetName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 资产型号 , assetModel ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产型号',null,'eam_asset_dep_detail')}" class="search-label assetModel-label">资产型号</span><span class="search-colon">:</span></div>
+                        <input id="assetModel" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 费用项目 , expenseItemName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('费用项目',null,'eam_asset_dep_detail')}" class="search-label expenseItemName-label">费用项目</span><span class="search-colon">:</span></div>
+                        <input id="expenseItemName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 财务选项 , financialOptionName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('财务选项',null,'eam_asset_dep_detail')}" class="search-label financialOptionName-label">财务选项</span><span class="search-colon">:</span></div>
+                        <input id="financialOptionName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 资产状态 , assetStatusName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产状态',null,'eam_asset_dep_detail')}" class="search-label assetStatusName-label">资产状态</span><span class="search-colon">:</span></div>
+                        <input id="assetStatusName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 客户情况 , customerInfo ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('客户情况',null,'eam_asset_dep_detail')}" class="search-label customerInfo-label">客户情况</span><span class="search-colon">:</span></div>
+                        <input id="customerInfo" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 采购日期 , assetPurchaseDate ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('采购日期',null,'eam_asset_dep_detail')}" class="search-label assetPurchaseDate-label">采购日期</span><span class="search-colon">:</span></div>
+                            <input type="text" id="assetPurchaseDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="assetPurchaseDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+                    <!-- 入账日期 , assetRegisterDate ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('入账日期',null,'eam_asset_dep_detail')}" class="search-label assetRegisterDate-label">入账日期</span><span class="search-colon">:</span></div>
+                            <input type="text" id="assetRegisterDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="assetRegisterDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 资产类别 , assetCategoryName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('资产类别',null,'eam_asset_dep_detail')}" class="search-label assetCategoryName-label">资产类别</span><span class="search-colon">:</span></div>
+                        <input id="assetCategoryName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 折旧规则 , result ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('折旧规则',null,'eam_asset_dep_detail')}" class="search-label result-label">折旧规则</span><span class="search-colon">:</span></div>
+                        <div id="result" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 折旧结果 , resultStatus ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('折旧结果',null,'eam_asset_dep_detail')}" class="search-label resultStatus-label">折旧结果</span><span class="search-colon">:</span></div>
+                        <div id="resultStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultStatusEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 结果明细 , resultDetail ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('结果明细',null,'eam_asset_dep_detail')}" class="search-label resultDetail-label">结果明细</span><span class="search-colon">:</span></div>
+                        <input id="resultDetail" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+        <button id="depreciation-start"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:start')}"class="layui-btn icon-btn layui-btn-sm  depreciationStart-btn " lay-event="tool-depreciation-start"><span th:text="${lang.translate('导入资产','','cmp:table.button')}">导入资产</span></button>
+        <button id="depreciation-execute"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:execute')}"class="layui-btn icon-btn layui-btn-sm  depreciationExecute-btn " lay-event="tool-depreciation-execute"><span th:text="${lang.translate('执行折旧','','cmp:table.button')}">执行折旧</span></button>
+        <button id="depreciation-sync"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:sync')}"class="layui-btn icon-btn layui-btn-sm  depreciationSync-btn " lay-event="tool-depreciation-sync"><span th:text="${lang.translate('同步数据','','cmp:table.button')}">同步数据</span></button>
+        <button id="depreciation-exclude"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:exclude')}"class="layui-btn icon-btn layui-btn-sm  depreciationExclude-btn " lay-event="tool-depreciation-exclude"><span th:text="${lang.translate('折旧排除','','cmp:table.button')}">折旧排除</span></button>
+        <button id="depreciation-export"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:export')}"class="layui-btn icon-btn layui-btn-sm  depreciationExport-btn " lay-event="tool-depreciation-export"><span th:text="${lang.translate('数据导出','','cmp:table.button')}">数据导出</span></button>
+    </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <button th:if="${perm.checkAnyAuth('eam_asset_depreciation_detail:update','eam_asset_depreciation_detail:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+
+
+    <button th:if="${perm.checkAuth('eam_asset_depreciation_detail:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
+
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var SELECT_FIRSTDEPRECIATIONMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetFirstDepreciationMethodTypeEnum')}]];
+    var SELECT_DEPRECIATIONMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum')}]];
+    var SELECT_RESULT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultEnum')}]];
+    var SELECT_RESULTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultStatusEnum')}]];
+    var AUTH_PREFIX="eam_asset_depreciation_detail";
+
+    // OPER_ID
+    var OPER_ID = [[${operId}]] ;
+
+</script>
+
+<script th:src="'/business/eam/asset_depreciation_detail/asset_depreciation_detail_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset_depreciation_detail/asset_depreciation_detail_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>
