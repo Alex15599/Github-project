@@ -1,0 +1,7 @@
+FROM openjdk:8u332-jdk
+MAINTAINER BPM
+USER root
+ADD bpm.jar /bpm.jar
+ADD application.yml /application.yml
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+ENTRYPOINT ["java","-jar","-noverify","-Dfile.encoding=UTF-8","/bpm.jar","--Dspring.config.location=/application.yml"]

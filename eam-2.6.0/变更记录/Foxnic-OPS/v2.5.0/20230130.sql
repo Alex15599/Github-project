@@ -1,0 +1,32 @@
+CREATE TABLE `ops_db_backup_log` (
+                                     `id` varchar(50) NOT NULL COMMENT '主键',
+                                     `uid` varchar(100) DEFAULT NULL COMMENT 'UID',
+                                     `db_id` varchar(50) DEFAULT NULL COMMENT '数据库实例',
+                                     `ip` varchar(100) DEFAULT NULL COMMENT 'IP',
+                                     `db_name` varchar(100) DEFAULT NULL COMMENT '名称',
+                                     `action` varchar(50) DEFAULT NULL COMMENT '动作',
+                                     `status` varchar(50) DEFAULT NULL COMMENT '状态',
+                                     `method` varchar(50) DEFAULT NULL COMMENT '方式',
+                                     `result` varchar(50) DEFAULT NULL COMMENT '结果',
+                                     `stime` datetime DEFAULT NULL COMMENT '开始时间',
+                                     `etime` datetime DEFAULT NULL COMMENT '结束时间',
+                                     `size` decimal(15,2) DEFAULT '0.00' COMMENT '大小',
+                                     `notes` varchar(500) DEFAULT NULL COMMENT '备注',
+                                     `record_time` datetime DEFAULT NULL COMMENT '记录时间',
+                                     `source` varchar(1000) DEFAULT NULL COMMENT '原始数据',
+                                     `processed` varchar(50) DEFAULT 'not_processed' COMMENT '处理状态',
+                                     `process_result` varchar(1000) DEFAULT NULL COMMENT '处理结果',
+                                     `last_process_time` datetime DEFAULT NULL COMMENT '处理时间',
+                                     `create_by` varchar(18) DEFAULT NULL COMMENT '创建人ID',
+                                     `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                                     `update_by` varchar(18) DEFAULT NULL COMMENT '修改人ID',
+                                     `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+                                     `deleted` tinyint(1) DEFAULT '0' COMMENT '是否已删除',
+                                     `delete_by` varchar(18) DEFAULT NULL COMMENT '删除人ID',
+                                     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+                                     `version` int(11) NOT NULL DEFAULT '1',
+                                     PRIMARY KEY (`id`) USING BTREE,
+                                     KEY `ind` (`processed`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='备份日志';
+
+alter table ops_db_backup_info add column uid varchar(50);

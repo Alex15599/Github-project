@@ -1,0 +1,2 @@
+14:45:47.521 [main] - [] - ERROR o.g.f.w.f.c.r.l.RedisListenerConfig - [getRedisMessageListenerContainer,24] - redis 配置错误，无法进行 notify 操作，单节点部署请忽略
+15:05:59.693 [main] - [] - ERROR o.g.f.w.f.c.r.l.RedisListenerConfig - [getRedisMessageListenerContainer,24] - redis 配置错误，无法进行 notify 操作，单节点部署请忽略

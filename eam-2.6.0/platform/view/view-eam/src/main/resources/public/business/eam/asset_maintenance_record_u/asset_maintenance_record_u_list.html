@@ -1,0 +1,192 @@
+<!--
+/**
+ * 维保更新记录 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-10-29 15:12:33
+ */
+ -->
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate('维保更新记录')}">维保更新记录</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 维保更新 , maintenanceUpdateId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 维保商 , maintainerId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维保商')}" class="search-label maintainerId-label">维保商</span><span class="search-colon">:</span></div>
+                        <div id="maintainerId" th:data="${'/service-eam/eam-maintainer/query-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 状态 , sMaintainerId ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintainerId ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintainerId ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 维保厂商名称 , maintainerName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , sMaintainerName ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintainerName ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintainerName ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 状态 , sMaintenanceStatus ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintenanceStatus ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintenanceStatus ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 状态 , sMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 联系方式 , contactInformation ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , sContactInformation ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uContactInformation ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSContactInformation ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 状态 , sSuggestMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSuggestMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSSuggestMaintenanceMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 联系人 , contacts ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , sContacts ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uContacts ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSContacts ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 负责人 , director ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , sDirector ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uDirector ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSDirector ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 维保开始时间 , maintenanceStartDate ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 状态 , sMaintenanceStartDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintenanceStartDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintenanceStartDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 维保到期时间 , maintenanceEndDate ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 状态 , sMaintenanceEndDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintenanceEndDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintenanceEndDate ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , maintenanceNotes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , sMaintenanceNotes ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uMaintenanceNotes ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 更新方式 , uSMaintenanceNotes ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 维保状态 , maintenanceStatus ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维保状态')}" class="search-label maintenanceStatus-label">维保状态</span><span class="search-colon">:</span></div>
+                        <div id="maintenanceStatus" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintenance_status'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 维保方式 , maintenanceMethod ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维保方式')}" class="search-label maintenanceMethod-label">维保方式</span><span class="search-colon">:</span></div>
+                        <div id="maintenanceMethod" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_maintenance_method'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 建议维保方式 , suggestMaintenanceMethod ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('建议维保方式')}" class="search-label suggestMaintenanceMethod-label">建议维保方式</span><span class="search-colon">:</span></div>
+                        <div id="suggestMaintenanceMethod" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_suggest_maintenance_method'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+        <button th:if="${perm.checkAuth('eam_asset_maintenance_record_u:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
+        <button th:if="${perm.checkAuth('eam_asset_maintenance_record_u:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
+    </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+
+    <button th:if="${perm.checkAnyAuth('eam_asset_maintenance_record_u:update','eam_asset_maintenance_record_u:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
+
+
+
+
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_SMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTAINERID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTAINERNAME_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USCONTACTINFORMATION_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SSUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_USUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USSUGGESTMAINTENANCEMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USCONTACTS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USDIRECTOR_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCESTARTDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCEENDDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_SMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_UMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var RADIO_USMAINTENANCENOTES_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum')}]];
+    var AUTH_PREFIX="eam_asset_maintenance_record_u";
+
+    // maintenanceUpdateId
+    var MAINTENANCE_UPDATE_ID = [[${maintenanceUpdateId}]] ;
+
+</script>
+
+<script th:src="'/business/eam/asset_maintenance_record_u/asset_maintenance_record_u_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset_maintenance_record_u/asset_maintenance_record_u_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>

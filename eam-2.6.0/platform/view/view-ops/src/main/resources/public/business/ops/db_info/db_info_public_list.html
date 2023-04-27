@@ -1,0 +1,176 @@
+<!--
+/**
+ * 数据库 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2023-01-19 19:44:19
+ */
+ -->
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+    <title th:text="${lang.translate('数据库')}">数据库</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden">
+
+<div class="layui-card">
+
+    <div class="layui-card-body" style="">
+
+        <div class="search-bar" style="">
+
+            <div class="search-input-rows" style="opacity: 0">
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 主机名称 , hostId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 库类型 , typeId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 大小(M) , dbSize ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 日志模式 , logMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 管理员账户 , adminUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 应用账户 , appUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 运维账户 , opsUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 其他账户 , otherUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 使用情况 , userUseInfo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 用户备注 , userInfo ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 凭证信息 , voucherStr ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 服务端口 , dbPort ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 本地备份策略 , backupStrategy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 工具备份策略 , toolStrategy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 灾备策略 , disasterRecoveryStrategy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 清理策略 , clearStrategy ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备份备注 , backupInfo ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 数据库类型 , dbTypeIds ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据库类型')}" class="search-label dbTypeIds-label">数据库类型</span><span class="search-colon">:</span></div>
+                        <div id="dbTypeIds" th:data="${'/service-ops/ops-service-category/query-list?groupId=db'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- IP , resHostIp ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 数据存放 , dataLocIds ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 数据库状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据库状态')}" class="search-label status-label">数据库状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:150px"></div>
+
+                    </div>
+                    <!-- 标签 , labelIds ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('标签')}" class="search-label labelIds-label">标签</span><span class="search-colon">:</span></div>
+                        <div id="labelIds" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_label'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 数据库名 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据库名')}" class="search-label name-label">数据库名</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 备份状态 , backupStatus ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备份状态')}" class="search-label backupStatus-label">备份状态</span><span class="search-colon">:</span></div>
+
+
+                        <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:150px"></div>
+
+                    </div>
+                    <!-- 部署模式 , deployMode ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('部署模式')}" class="search-label deployMode-label">部署模式</span><span class="search-colon">:</span></div>
+                        <div id="deployMode" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_deploy_mode'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 数据存放 , dataLoc ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('数据存放')}" class="search-label dataLoc-label">数据存放</span><span class="search-colon">:</span></div>
+                        <input id="dataLoc" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
+                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:90px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="createTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!-- 按钮区域 -->
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
+            </div>
+        </div>
+
+        <div id="table-area" style="margin-top: 42px ">
+            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<!-- 表格工具栏 -->
+<script type="text/html" id="toolbarTemplate">
+    <div class="layui-btn-container">
+     </div>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableOperationTemplate">
+<!--    <button th:if="${perm.checkAuth('ops_db_info:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>-->
+</script>
+
+
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = null;
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}]];
+    var RADIO_BACKUPSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}]];
+    var RADIO_LOGMETHOD_DATA = [[${dict.toArray('ops_db_log_method')}]];
+    var AUTH_PREFIX="ops_db_info_show";
+
+
+</script>
+
+<script th:src="'/business/ops/db_info/db_info_public_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/db_info/db_info_public_list.js?'+${cacheKey}"></script>
+
+</body>
+</html>

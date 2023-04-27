@@ -1,0 +1,220 @@
+<!--
+/**
+ * 资产归还 列表页 JS 脚本
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-11-13 18:22:46
+ */
+ -->
+ <!DOCTYPE html>
+<html style="background-color: #FFFFFF;">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8"/>
+	<title th:text="${lang.translate('资产归还')}">资产归还</title>
+    <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
+    <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
+    <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
+    <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
+    <style>
+        .layui-form-label {
+            width: 70px;
+        }
+        .layui-input-block {
+            margin-left: 105px;
+        }
+    </style>
+    <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
+</head>
+
+<body style="overflow-y: hidden;">
+<div class="form-container" >
+
+    <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
+
+        <input name="id" id="id"  type="hidden"/>
+
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-4839-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- text_input : 业务名称 ,  name -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('业务名称')}">业务名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('业务名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column" >
+
+                <!-- date_input : 归还日期 ,  returnDate  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('归还日期')}">归还日期</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="date" lay-filter="returnDate" id="returnDate" name="returnDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('归还日期') }" type="text" class="layui-input"    lay-verify="|required"   />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-3513-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
+
+                <!-- button : 归还后公司/部门 ,  useOrganizationId  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('归还后公司/部门')}">归还后公司/部门</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="useOrganizationId" id="useOrganizationId" name="useOrganizationId"  type="hidden" class="layui-input"   />
+                        <button id="useOrganizationId-button" type="button" action-type="org-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
+                    </div>
+                </div>
+
+                <!-- select_box : 存放位置 ,  positionId  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('存放位置')}">存放位置</div></div>
+                    <div class="layui-input-block ">
+                        <div id="positionId" input-type="select" th:data="${'/service-eam/eam-position/query-list'}" extraParam="{}"></div>
+                    </div>
+                </div>
+
+                <!-- text_input : 详细位置 ,  positionDetail -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('详细位置')}">详细位置</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="positionDetail" id="positionDetail" name="positionDetail" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('详细位置') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs6 form-column"  style="padding-top: 0px" >
+
+                <!-- text_input : 申请人 ,  originatorUserName -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('申请人')}">申请人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="originatorUserName" id="originatorUserName" name="originatorUserName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('申请人') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+
+                <!-- button : 管理人 ,  managerId  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('管理人')}">管理人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="managerId" id="managerId" name="managerId"  type="hidden" class="layui-input"   />
+                        <button id="managerId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                    </div>
+                </div>
+
+                <!-- button : 使用人 ,  useUserId  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('使用人')}">使用人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="useUserId" id="useUserId" name="useUserId"  type="hidden" class="layui-input"   />
+                        <button id="useUserId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+        <div class="layui-row form-row" id="random-0215-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+                <!-- text_area : 归还说明 ,  content  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('归还说明')}">归还说明</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('归还说明') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+                            <!-- upload : 附件 ,  attach  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('附件')}">附件</div></div>
+                    <div class="layui-upload layui-input-block ">
+                        <input input-type="upload" id="attach"  name="attach" lay-filter="attach" style="display: none">
+                        <button type="button" class="layui-btn" id="attach-button" th:text="${lang.translate('选择附件')}">选择附件</button>
+                        <div class="layui-upload-list" id="attach-file-list"></div>
+                    </div>
+                </div>
+            <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4713-fieldset">
+        <legend>资产列表</legend>
+        </fieldset>
+        <div class="layui-row form-row" style="text-align: center;" id="random-4713-content">
+            <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
+            <iframe id="random-4713-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            </div>
+        </div>
+        <!--结束：group循环-->
+
+        <div style="height: 8px"></div>
+        <div style="height: 20px"></div>
+
+
+    </form>
+
+</div>
+<div class="model-form-footer">
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_borrow_return:create','eam_asset_borrow_return:update','eam_asset_borrow_return:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+</div>
+
+<script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
+    var VALIDATE_CONFIG={"businessDate":{"date":true,"labelInForm":"业务日期","inputType":"date_input"},"returnDate":{"date":true,"labelInForm":"归还日期","inputType":"date_input","required":true},"name":{"labelInForm":"业务名称","inputType":"text_input","required":true}};
+    var AUTH_PREFIX="eam_asset_borrow_return";
+
+    // 单据ID
+    var BILL_ID = [[${billId}]] ;
+    // 单据类型
+    var BILL_TYPE = [[${billType}]] ;
+
+</script>
+
+
+
+<script th:src="'/business/eam/asset_borrow_return/asset_borrow_return_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/eam/asset_borrow_return/asset_borrow_return_form.js?'+${cacheKey}"></script>
+
+</body>
+</html>

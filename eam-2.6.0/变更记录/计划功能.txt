@@ -1,0 +1,6 @@
+
+应用从V2.3升级到V2.4步骤
+1、全量更新所有jar包，可运行deployAppUpdate.sh
+2、数据库表结构和增量sql，通过source V2.4.sql
+   后期可在页面上直接更新（当前只能source）
+3、重启restartAll.sh

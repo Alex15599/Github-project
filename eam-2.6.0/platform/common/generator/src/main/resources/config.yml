@@ -1,0 +1,185 @@
+
+settings:
+  enableMicroService: true 
+  enableSwagger: true
+
+
+#源代码相关的部分
+source: 
+  #DAO常量名
+  daoNameConst: org.github.foxnic.web.framework.dao.DBConfigs.PRIMARY_DAO
+  #系统常量包名
+  domainConstantsPackage: com.dt.platform.constants
+
+#使用不同的机器码对应到作者
+authors:
+  #指定机器码与对应的作者，机器码在代码生成时控制台输出，或main函数调用 Machine.getIdentity()
+  B15BDA59450483F9: 李方捷 , leefangjie@qq.com
+  B1894FFE47E36B09: 李方捷 , leefangjie@qq.com
+  D7B67D75818C671B: 金杰 , maillank@qq.com
+  76C24FBF9BD15F8A: 金杰 , maillank@qq.com
+
+
+compoments: 
+  domain: /common/domain
+  proxy: /common/proxy
+  
+
+
+#应用清单
+applications: 
+  #EAM
+  service-eam:
+    nacosGroup: service
+    nacosDataId: service-eam.yml
+    serviceProjectPath:  /service/service-eam
+    packageName: com.dt.platform.eam
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: EAM
+    viewProjectPath: /view/view-eam
+    viewPrefixPath: public/business/eam
+    wrapperProjectPath:  /wrapper/wrapper-all
+  #HR
+  service-hr:
+    nacosGroup: service
+    nacosDataId: service-hr.yml
+    serviceProjectPath:  /service/service-hr
+    packageName: com.dt.platform.hr
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: HR
+    viewProjectPath: /view/view-hr
+    viewPrefixPath: public/business/hr
+    wrapperProjectPath:  /wrapper/wrapper-all
+  #数据中心
+  service-datacenter:
+    nacosGroup: service
+    nacosDataId: service-datacenter.yml
+    serviceProjectPath: /service/service-datacenter
+    packageName: com.dt.platform.datacenter
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: DATACENTER
+    viewProjectPath: /view/view-datacenter
+    viewPrefixPath: public/business/datacenter
+    wrapperProjectPath: /wrapper/wrapper-all
+  #运维模块
+  service-ops:
+    nacosGroup: service
+    nacosDataId: service-ops.yml
+    serviceProjectPath: /service/service-ops
+    packageName: com.dt.platform.ops
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: OPS
+    viewProjectPath: /view/view-ops
+    viewPrefixPath: public/business/ops
+    wrapperProjectPath: /wrapper/wrapper-all
+  #功能模块
+  service-common:
+    nacosGroup: service
+    nacosDataId: service-common.yml
+    serviceProjectPath: /service/service-common
+    packageName: com.dt.platform.common
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: COMMON
+    viewProjectPath: /view/view-common
+    viewPrefixPath: public/business/common
+    wrapperProjectPath: /wrapper/wrapper-all
+  #知识库模块
+  service-knowledgebase:
+    nacosGroup: service
+    nacosDataId: service-knowledgebase.yml
+    serviceProjectPath: /service/service-knowledgebase
+    packageName: com.dt.platform.knowledgebase
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: KNOWLEDGEBASE
+    viewProjectPath: /view/view-knowledgebase
+    viewPrefixPath: public/business/knowledgebase
+    wrapperProjectPath: /wrapper/wrapper-all
+  #合同模块
+  service-contract:
+    nacosGroup: service
+    nacosDataId: service-contract.yml
+    serviceProjectPath: /service/service-contract
+    packageName: com.dt.platform.contract
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: CONTRACT
+    viewProjectPath: /view/view-contract
+    viewPrefixPath: public/business/contract
+    wrapperProjectPath: /wrapper/wrapper-all
+  #客户模块
+  service-customer:
+    nacosGroup: service
+    nacosDataId: service-customer.yml
+    serviceProjectPath: /service/service-customer
+    packageName: com.dt.platform.customer
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: CUSTOMER
+    viewProjectPath: /view/view-customer
+    viewPrefixPath: public/business/customer
+    wrapperProjectPath: /wrapper/wrapper-all
+  #车辆模块
+  service-vehicle:
+    nacosGroup: service
+    nacosDataId: service-vehicle.yml
+    serviceProjectPath: /service/service-vehicle
+    packageName: com.dt.platform.vehicle
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: VEHICLE
+    viewProjectPath: /view/view-vehicle
+    viewPrefixPath: public/business/vehicle
+    wrapperProjectPath: /wrapper/wrapper-all
+  #CMS
+  service-cms:
+    nacosGroup: service
+    nacosDataId: service-cms.yml
+    serviceProjectPath: /service/service-cms
+    packageName: com.dt.platform.cms
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: CMS
+    viewProjectPath: /view/view-cms
+    viewPrefixPath: public/business/cms
+    wrapperProjectPath: /wrapper/wrapper-all
+  #WORKORDER
+  service-workorder:
+    nacosGroup: service
+    nacosDataId: service-workorder.yml
+    serviceProjectPath: /service/service-workorder
+    packageName: com.dt.platform.workorder
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: WORKORDER
+    viewProjectPath: /view/view-workorder
+    viewPrefixPath: public/business/workorder
+    wrapperProjectPath: /wrapper/wrapper-all
+  #MOBILE
+  service-mobile:
+    nacosGroup: service
+    nacosDataId: service-mobile.yml
+    serviceProjectPath: /service/service-mobile
+    packageName: com.dt.platform.mobile
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: MOBILE
+    viewProjectPath: /view/view-mobile
+    viewPrefixPath: public/business/mobile
+    wrapperProjectPath: /wrapper/wrapper-all
+  #OA
+  service-oa:
+    nacosGroup: service
+    nacosDataId: service-oa.yml
+    serviceProjectPath: /service/service-oa
+    packageName: com.dt.platform.oa
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: OA
+    viewProjectPath: /view/view-oa
+    viewPrefixPath: public/business/oa
+    wrapperProjectPath: /wrapper/wrapper-all
+  #WMS
+  service-wms:
+    nacosGroup: service
+    nacosDataId: service-wms.yml
+    serviceProjectPath: /service/service-wms
+    packageName: com.dt.platform.wms
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: WMS
+    viewProjectPath: /view/view-wms
+    viewPrefixPath: public/business/wms
+    wrapperProjectPath: /wrapper/wrapper-all
+

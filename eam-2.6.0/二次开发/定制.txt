@@ -1,0 +1,1 @@
+alter table eam_c_cust_repair_apply add column result varchar(500) default '' comment '处理结果' after finish_date;
